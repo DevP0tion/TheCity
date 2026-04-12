@@ -1,0 +1,13 @@
+<Project>
+    <PropertyGroup>
+        <!-- Megadot / Godot 4.5.1 mono executable for .pck export -->
+        <!-- Windows -->
+        <GodotPath Condition="!$([MSBuild]::IsOSPlatform('Linux')) And !$([MSBuild]::IsOSPlatform('OSX'))">C:/megadot/MegaDot_v4.5.1-stable_mono_win64.exe</GodotPath>
+        <!-- Linux -->
+        <GodotPath Condition="$([MSBuild]::IsOSPlatform('Linux'))">$(HOME)/godot/Godot_v4.5.1-stable_mono_linux_x86_64</GodotPath>
+
+        <!-- 게임 미설치 환경: lib/ 폴더의 DLL을 사용 -->
+        <Sts2DataDir Condition="!Exists('$(Sts2DataDir)') Or '$(Sts2DataDir)' == ''">$(MSBuildProjectDirectory)/lib</Sts2DataDir>
+        <ModsPath Condition="'$(ModsPath)' == ''">$(MSBuildProjectDirectory)/output/mods/</ModsPath>
+    </PropertyGroup>
+</Project>

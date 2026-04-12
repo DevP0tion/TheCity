@@ -1,0 +1,19 @@
+.godot/
+bin/
+obj/
+/android/
+.git/
+.idea/
+.vs/
+publish/
+Properties/
+packages/
+.editorconfig
+*.user
+Directory.Build.props
+
+# Game DLLs (copyrighted, do not commit)
+lib/*.dll
+
+# Build output
+output/
