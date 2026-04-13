@@ -23,6 +23,7 @@ public static class CombatEndPatch
     {
         SharedResourceManager.Cleanup();
         SharedResourceSync.Unregister();
+        CardFields.ClearAll();
         GD.Print($"[{ModStart.ModId}] SharedResourceManager cleaned up.");
     }
 }
