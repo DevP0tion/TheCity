@@ -1,11 +1,10 @@
+using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
+using TheCity;
 
 namespace TheCity.Resource;
 
-/// <summary>
-/// 전투 시작/종료 시 SharedResourceManager 초기화/정리.
-/// </summary>
 [HarmonyPatch(typeof(CombatManager), nameof(CombatManager.SetUpCombat))]
 public static class CombatStartPatch
 {
@@ -13,7 +12,7 @@ public static class CombatStartPatch
     {
         SharedResourceSync.Register();
         SharedResourceManager.Initialize();
-        ModStart.Logger.Info("SharedResourceManager initialized for combat.");
+        GD.Print($"[{ModStart.ModId}] SharedResourceManager initialized.");
     }
 }
 
@@ -24,6 +23,6 @@ public static class CombatEndPatch
     {
         SharedResourceManager.Cleanup();
         SharedResourceSync.Unregister();
-        ModStart.Logger.Info("SharedResourceManager cleaned up after combat.");
+        GD.Print($"[{ModStart.ModId}] SharedResourceManager cleaned up.");
     }
 }

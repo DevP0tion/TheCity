@@ -5,14 +5,12 @@ using TheCity.Resource;
 
 namespace TheCity;
 
-[ModInitializer(nameof(Initialize))]
-public partial class ModStart : Node
+[ModInitializer(nameof(ModInit))]
+public static class ModStart
 {
     public const string ModId = "TheCity";
 
-    public static MegaCrit.Sts2.Core.Logging.Logger Logger { get; } = new(ModId, MegaCrit.Sts2.Core.Logging.LogType.Generic);
-
-    public static void Initialize()
+    public static void ModInit()
     {
         Harmony harmony = new(ModId);
         harmony.PatchAll();
@@ -21,6 +19,6 @@ public partial class ModStart : Node
         // SharedResourceManager.Register("faith");
         // SharedResourceManager.Register("corruption");
 
-        Logger.Info("TheCity mod initialized.");
+        GD.Print($"[{ModId}] Mod initialized.");
     }
 }
