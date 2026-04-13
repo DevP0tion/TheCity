@@ -7,8 +7,7 @@ using MegaCrit.Sts2.Core.Runs;
 namespace TheCity.TheCityCode.Resource;
 
 /// <summary>
-/// SharedResource 값 동기화용 네트워크 메시지.
-/// 값이 변경될 때 모든 플레이어에게 브로드캐스트.
+/// 특정 자원의 값 동기화용 네트워크 메시지.
 /// </summary>
 public sealed class SharedResourceSyncMessage : INetMessage, IPacketSerializable
 {
@@ -16,27 +15,29 @@ public sealed class SharedResourceSyncMessage : INetMessage, IPacketSerializable
     public NetTransferMode Mode => NetTransferMode.Reliable;
     public LogLevel LogLevel => LogLevel.Debug;
 
+    public string ResourceId { get; set; } = string.Empty;
     public int NewValue { get; set; }
 
     public void Serialize(PacketWriter writer)
     {
+        writer.WriteString(ResourceId);
         writer.WriteInt(NewValue);
     }
 
     public void Deserialize(PacketReader reader)
     {
+        ResourceId = reader.ReadString();
         NewValue = reader.ReadInt();
     }
 }
 
 /// <summary>
-/// SharedResource 네트워크 동기화 유틸리티.
+/// SharedResourceManager 네트워크 동기화 유틸리티.
 /// </summary>
 public static class SharedResourceSync
 {
     private static bool _registered;
 
-    /// <summary>메시지 핸들러 등록. 모드 초기화 시 호출.</summary>
     public static void Register()
     {
         if (_registered) return;
@@ -48,7 +49,6 @@ public static class SharedResourceSync
         _registered = true;
     }
 
-    /// <summary>메시지 핸들러 해제.</summary>
     public static void Unregister()
     {
         if (!_registered) return;
@@ -58,18 +58,20 @@ public static class SharedResourceSync
         _registered = false;
     }
 
-    /// <summary>현재 값을 다른 플레이어에게 전송.</summary>
-    public static void SendUpdate(int newValue)
+    public static void SendUpdate(string resourceId, int newValue)
     {
         var netService = RunManager.Instance?.NetService;
         if (netService == null) return;
 
-        netService.SendMessage(new SharedResourceSyncMessage { NewValue = newValue });
+        netService.SendMessage(new SharedResourceSyncMessage
+        {
+            ResourceId = resourceId,
+            NewValue = newValue,
+        });
     }
 
     private static void OnReceived(SharedResourceSyncMessage msg, ulong senderId)
     {
-        // 수신 측: sync=false로 설정하여 재전송 방지
-        SharedResource.Set(msg.NewValue, sync: false);
+        SharedResourceManager.Set(msg.ResourceId, msg.NewValue, sync: false);
     }
 }

@@ -1,10 +1,10 @@
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
+using TheCity.TheCityCode.Resource;
 
 namespace TheCity.TheCityCode;
 
-//You're recommended but not required to keep all your code in this package and all your assets in the TheCity folder.
 [ModInitializer(nameof(Initialize))]
 public partial class MainFile : Node
 {
@@ -15,7 +15,12 @@ public partial class MainFile : Node
     public static void Initialize()
     {
         Harmony harmony = new(ModId);
-
         harmony.PatchAll();
+
+        // 자원 종류 등록 (전투 시작 전에 등록해야 함)
+        // SharedResourceManager.Register("faith");
+        // SharedResourceManager.Register("corruption");
+
+        Logger.Info("TheCity mod initialized.");
     }
 }

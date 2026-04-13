@@ -1,21 +1,19 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Rooms;
 
 namespace TheCity.TheCityCode.Resource;
 
 /// <summary>
-/// 전투 시작/종료 시 SharedResource 초기화/정리.
-/// CombatManager의 이벤트를 Harmony 패치로 후킹.
+/// 전투 시작/종료 시 SharedResourceManager 초기화/정리.
 /// </summary>
 [HarmonyPatch(typeof(CombatManager), nameof(CombatManager.SetUpCombat))]
 public static class CombatStartPatch
 {
     public static void Postfix()
     {
-        SharedResource.Initialize();
         SharedResourceSync.Register();
-        MainFile.Logger.Info("SharedResource initialized for combat.");
+        SharedResourceManager.Initialize();
+        MainFile.Logger.Info("SharedResourceManager initialized for combat.");
     }
 }
 
@@ -24,8 +22,8 @@ public static class CombatEndPatch
 {
     public static void Postfix()
     {
+        SharedResourceManager.Cleanup();
         SharedResourceSync.Unregister();
-        SharedResource.Cleanup();
-        MainFile.Logger.Info("SharedResource cleaned up after combat.");
+        MainFile.Logger.Info("SharedResourceManager cleaned up after combat.");
     }
 }
