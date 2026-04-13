@@ -1,4 +1,4 @@
-# STS2Mod
+# TheCity
 
 Slay the Spire 2 mod project (Godot 4.5.1 / C# / .NET 9.0)
 
@@ -39,13 +39,13 @@ dotnet publish -c Release
 ## Project Structure
 
 ```
-STS2Mod/
-├── STS2ModCode/       # C# 소스코드
+TheCity/
+├── TheCityCode/       # C# 소스코드
 │   └── MainFile.cs    # 모드 엔트리포인트
-├── STS2Mod/           # Godot 에셋 (이미지, 씬 등)
+├── TheCity/           # Godot 에셋 (이미지, 씬 등)
 ├── lib/               # 게임 DLL (gitignore)
-├── STS2Mod.csproj     # 프로젝트 설정
-├── STS2Mod.json       # 모드 매니페스트
+├── TheCity.csproj     # 프로젝트 설정
+├── TheCity.json       # 모드 매니페스트
 ├── project.godot      # Godot 프로젝트
 └── Directory.Build.props  # 로컬 경로 설정 (gitignore)
 ```

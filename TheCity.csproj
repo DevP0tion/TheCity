@@ -37,15 +37,15 @@
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />
         <!-- Generates a .pck file when building if only using simple assets. May not work on all setups. Uncomment to test. -->
         <!-- <PackageReference Include="BSchneppe.StS2.PckPacker" Version="0.1.1" PrivateAssets="All" /> -->
-        <AdditionalFiles Include="STS2Mod/localization/**/*.json"/> <!-- Used by analyzer -->
+        <AdditionalFiles Include="TheCity/localization/**/*.json"/> <!-- Used by analyzer -->
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Remove="STS2Mod/**" />
+        <Compile Remove="TheCity/**" />
         <Compile Remove="materials/**" />
         <Compile Remove="shaders/**" />
         <Compile Remove="images/**" />
-        <EmbeddedResource Remove="STS2Mod/**" />
+        <EmbeddedResource Remove="TheCity/**" />
         <EmbeddedResource Remove="materials/**" />
         <EmbeddedResource Remove="shaders/**" />
         <EmbeddedResource Remove="images/**" />
@@ -54,9 +54,9 @@
     <ItemGroup>
         <None Condition="Exists('Directory.Build.props')" Include="Directory.Build.props"/>
         <None Include=".gitignore" />
-        <None Include="STS2Mod.json" />
+        <None Include="TheCity.json" />
         <None Include="project.godot"/>
-        <None Include="STS2Mod/**" />
+        <None Include="TheCity/**" />
     </ItemGroup>
     
     <Target Name="CheckDependencyPaths" >

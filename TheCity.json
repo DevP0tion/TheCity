@@ -1,9 +1,9 @@
 {
-  "id": "STS2Mod",
-  "name": "STS2Mod",
+  "id": "TheCity",
+  "name": "The City / 도시",
   "author": "DevP0tion",
   "description": "Slay the Spire 2 mod created from a template for use with BaseLib",
-  "version": "v0.0.0",
+  "version": "v0.0.1",
   "has_pck": true,
   "has_dll": true,
   "dependencies": ["BaseLib"],
