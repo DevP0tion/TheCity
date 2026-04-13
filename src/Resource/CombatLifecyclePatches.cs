@@ -13,7 +13,7 @@ public static class CombatStartPatch
     {
         SharedResourceSync.Register();
         SharedResourceManager.Initialize();
-        MainFile.Logger.Info("SharedResourceManager initialized for combat.");
+        ModStart.Logger.Info("SharedResourceManager initialized for combat.");
     }
 }
 
@@ -24,6 +24,6 @@ public static class CombatEndPatch
     {
         SharedResourceManager.Cleanup();
         SharedResourceSync.Unregister();
-        MainFile.Logger.Info("SharedResourceManager cleaned up after combat.");
+        ModStart.Logger.Info("SharedResourceManager cleaned up after combat.");
     }
 }

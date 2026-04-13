@@ -6,7 +6,7 @@ using TheCity.Resource;
 namespace TheCity;
 
 [ModInitializer(nameof(Initialize))]
-public partial class MainFile : Node
+public partial class ModStart : Node
 {
     public const string ModId = "TheCity";
 
