@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TheCity.TheCityCode.Resource;
+namespace TheCity.Resource;
 
 /// <summary>
 /// ID 기반 다중 자원 관리자.

@@ -1,9 +1,9 @@
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
-using TheCity.TheCityCode.Resource;
+using TheCity.Resource;
 
-namespace TheCity.TheCityCode;
+namespace TheCity;
 
 [ModInitializer(nameof(Initialize))]
 public partial class MainFile : Node

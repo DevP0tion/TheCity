@@ -12,7 +12,7 @@ config_version=5
 
 config/name="TheCity"
 config/features=PackedStringArray("4.5", "C#", "Mobile")
-config/icon="res://TheCity/mod_image.png"
+config/icon="res://assets/mod_image.png"
 
 [display]
 

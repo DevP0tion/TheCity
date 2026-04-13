@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Multiplayer.Transport;
 using MegaCrit.Sts2.Core.Runs;
 
-namespace TheCity.TheCityCode.Resource;
+namespace TheCity.Resource;
 
 /// <summary>
 /// 특정 자원의 값 동기화용 네트워크 메시지.

@@ -1,7 +1,7 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 
-namespace TheCity.TheCityCode.Resource;
+namespace TheCity.Resource;
 
 /// <summary>
 /// 전투 시작/종료 시 SharedResourceManager 초기화/정리.
