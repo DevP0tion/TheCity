@@ -1,3 +1,4 @@
+using BaseLib.Config;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
@@ -12,6 +13,9 @@ public static class ModStart
 
     public static void ModInit()
     {
+        // 설정 로드 (Harmony 패치 전에 등록하여 값이 먼저 로드됨)
+        ModConfigRegistry.Register(ModId, new TheCityConfig());
+
         Harmony harmony = new(ModId);
         harmony.PatchAll();
 
