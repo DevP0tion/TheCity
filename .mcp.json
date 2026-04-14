@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "sts2-modding": {
+      "command": "F:\\workspace\\MCP\\STS2\\venv\\Scripts\\python.exe",
+      "args": [
+        "F:\\workspace\\MCP\\STS2\\run.py"
+      ]
+    }
+  }
+}
