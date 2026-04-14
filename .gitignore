@@ -17,3 +17,4 @@ lib/*.dll
 
 # Build output
 output/
+build.bat
