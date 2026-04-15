@@ -39,29 +39,9 @@ public static class SinExtensions
         }
     }
 
-    /// <summary>한국어 이름.</summary>
-    public static string ToKorean(this Sin sin) => sin switch
-    {
-        Sin.Wrath => "분노",
-        Sin.Lust => "색욕",
-        Sin.Sloth => "나태",
-        Sin.Gluttony => "탐식",
-        Sin.Gloom => "우울",
-        Sin.Pride => "오만",
-        Sin.Envy => "질투",
-        _ => sin.ToString(),
-    };
+    /// <summary>로컬라이제이션 키.</summary>
+    public static string ToLocKey(this Sin sin) => $"SIN_{sin.ToString().ToUpperInvariant()}";
 
-    /// <summary>영어 이름.</summary>
-    public static string ToEnglish(this Sin sin) => sin switch
-    {
-        Sin.Wrath => "Wrath",
-        Sin.Lust => "Lust",
-        Sin.Sloth => "Sloth",
-        Sin.Gluttony => "Gluttony",
-        Sin.Gloom => "Gloom",
-        Sin.Pride => "Pride",
-        Sin.Envy => "Envy",
-        _ => sin.ToString(),
-    };
+    /// <summary>현재 게임 언어로 번역된 이름.</summary>
+    public static string ToDisplayName(this Sin sin) => Loc.Get(sin.ToLocKey());
 }

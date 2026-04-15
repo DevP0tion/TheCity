@@ -92,7 +92,16 @@ public partial class ResourcePanel : PanelContainer
     {
         if (_displays.ContainsKey(id)) return;
 
-        var displayName = DisplayNames.TryGetValue(id, out var name) ? name : id;
+        // 우선순위: DisplayNames 수동 매핑 → Loc 번역 → id 그대로
+        string displayName;
+        if (DisplayNames.TryGetValue(id, out var name))
+            displayName = name;
+        else
+        {
+            var locKey = id.ToUpperInvariant();
+            displayName = Loc.Has(locKey) ? Loc.Get(locKey) : id;
+        }
+
         var display = ResourceDisplay.Create(id, displayName, value);
         _container.AddChild(display);
         _displays[id] = display;
