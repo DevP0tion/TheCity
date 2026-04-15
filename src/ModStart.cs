@@ -19,9 +19,8 @@ public static class ModStart
         Harmony harmony = new(ModId);
         harmony.PatchAll();
 
-        // 자원 종류 등록 (전투 시작 전에 등록해야 함)
-        // SharedResourceManager.Register("faith");
-        // SharedResourceManager.Register("corruption");
+        // 7대죄 자원 등록
+        SinExtensions.RegisterAll();
 
         GD.Print($"[{ModId}] Mod initialized.");
     }
