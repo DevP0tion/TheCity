@@ -18,3 +18,6 @@ lib/*.dll
 # Build output
 output/
 build.bat
+
+# Claude Code worktrees & session state
+.claude/
