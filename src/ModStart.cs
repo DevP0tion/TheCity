@@ -2,6 +2,7 @@ using BaseLib.Config;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
+using TheCity.Map;
 using TheCity.Resource;
 
 namespace TheCity;
@@ -15,6 +16,10 @@ public static class ModStart
     {
         // 설정 로드 (Harmony 패치 전에 등록하여 값이 먼저 로드됨)
         ModConfigRegistry.Register(ModId, new TheCityConfig());
+
+        // Abnormality 기능 preflight 검증 (sentinel 충돌 / 리네임 감지)
+        AbnormalityPreflight.Run();
+        AbnormalityMapPointType.EnsureLoaded();
 
         Harmony harmony = new(ModId);
         harmony.PatchAll();

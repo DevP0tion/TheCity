@@ -9,28 +9,27 @@ namespace TheCity;
 /// </summary>
 internal class TheCityConfig : SimpleModConfig
 {
-    // ── 일반 설정 ──
-
-    [ConfigSection("General")]
-    public static bool EnableResourceUI { get; set; } = true;
-
-    // ── 숫자 입력 (슬라이더) ──
-
-    [ConfigSection("ResourceSettings")]
-
-    [SliderRange(0, 100)]
-    public static int MaxResourceValue { get; set; } = 50;
-
-    // ── 숫자 입력 (직접 타이핑) ──
+    // ── 자원 설정 ──
 
     /// <summary>
-    /// 텍스트 입력 기반 숫자 설정.
-    /// 1~9999 범위의 정수만 허용.
+    /// 자원 초기값 (텍스트 입력 기반, 정수만 허용, 자릿수 제한 없음).
     /// </summary>
-    [ConfigTextInput("[0-9]{1,4}", MaxLength = 4)]
+    [ConfigSection("ResourceSettings")]
+    [ConfigTextInput("[0-9]+")]
     public static string StartingResourceValue { get; set; } = "0";
 
     /// <summary>StartingResourceValue를 int로 조회. 파싱 실패 시 0.</summary>
     [ConfigIgnore]
     public static int StartingResourceInt => int.TryParse(StartingResourceValue, out var v) ? v : 0;
+
+    // ── 맵 설정 ──
+
+    /// <summary>
+    /// 환상체(Abnormality) 노드 출현 확률 (%).
+    /// 각 후보 Unknown 노드마다 독립 확률로 교체 (0 = 비활성, 100 = 모든 Unknown → 환상체).
+    /// 결정론적 해시로 판정하여 멀티플레이어 safe.
+    /// </summary>
+    [ConfigSection("MapSettings")]
+    [SliderRange(0, 100)]
+    public static int AbnormalitySpawnChance { get; set; } = 20;
 }

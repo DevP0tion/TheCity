@@ -7,5 +7,12 @@
   "SIN_GLUTTONY": "Gluttony",
   "SIN_GLOOM": "Gloom",
   "SIN_PRIDE": "Pride",
-  "SIN_ENVY": "Envy"
+  "SIN_ENVY": "Envy",
+
+  "ROOM_ABNORMALITY.title": "Abnormality",
+  "ROOM_ABNORMALITY.description": "An anomalous presence. Outcome unknown.",
+
+  "LEGEND_ABNORMALITY.title": "Abnormality",
+  "LEGEND_ABNORMALITY.hoverTip.title": "Abnormality",
+  "LEGEND_ABNORMALITY.hoverTip.description": "An anomalous presence. Outcome unknown."
 }

@@ -22,17 +22,28 @@ public static class Loc
 {
     public const string Table = "thecity";
 
-    /// <summary>번역 문자열 조회. 키가 없으면 키 자체를 반환.</summary>
+    /// <summary>번역 문자열 조회. 키가 없거나 LocManager 미초기화 시 키 자체 반환.</summary>
     public static string Get(string key)
     {
-        if (!LocString.Exists(Table, key))
+        try
+        {
+            if (!LocString.Exists(Table, key))
+                return key;
+            return new LocString(Table, key).GetFormattedText();
+        }
+        catch
+        {
+            // LocManager가 해당 table을 아직 로드하지 않았거나, 내부 에러 발생 시
             return key;
-
-        return new LocString(Table, key).GetFormattedText();
+        }
     }
 
-    /// <summary>키 존재 여부.</summary>
-    public static bool Has(string key) => LocString.Exists(Table, key);
+    /// <summary>키 존재 여부. LocManager 미초기화 시 false.</summary>
+    public static bool Has(string key)
+    {
+        try { return LocString.Exists(Table, key); }
+        catch { return false; }
+    }
 
     /// <summary>LocString 객체 생성 (DynamicVar 등 변수 바인딩이 필요할 때).</summary>
     public static LocString Of(string key) => new(Table, key);

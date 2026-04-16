@@ -7,5 +7,12 @@
   "SIN_GLUTTONY": "탐식",
   "SIN_GLOOM": "우울",
   "SIN_PRIDE": "오만",
-  "SIN_ENVY": "질투"
+  "SIN_ENVY": "질투",
+
+  "ROOM_ABNORMALITY.title": "환상체",
+  "ROOM_ABNORMALITY.description": "비정상적 존재. 결과는 알 수 없다.",
+
+  "LEGEND_ABNORMALITY.title": "환상체",
+  "LEGEND_ABNORMALITY.hoverTip.title": "환상체",
+  "LEGEND_ABNORMALITY.hoverTip.description": "비정상적 존재. 결과는 알 수 없다."
 }

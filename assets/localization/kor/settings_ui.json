@@ -1,6 +1,5 @@
 {
   "THECITY.mod_title": "도시",
-  "THECITY-ENABLE_RESOURCE_UI.title": "자원 UI 표시",
-  "THECITY-MAX_RESOURCE_VALUE.title": "자원 최대값",
-  "THECITY-STARTING_RESOURCE_VALUE.title": "자원 초기값"
+  "THECITY-STARTING_RESOURCE_VALUE.title": "자원 초기값",
+  "THECITY-ABNORMALITY_SPAWN_CHANCE.title": "환상체 출현 확률 (%)"
 }
