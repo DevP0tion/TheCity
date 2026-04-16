@@ -21,3 +21,6 @@ build.bat
 
 # Claude Code worktrees & session state
 .claude/
+
+# bkit runtime state
+.bkit/
