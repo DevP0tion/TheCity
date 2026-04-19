@@ -1,0 +1,15 @@
+{
+  "cardId": "Scrawl",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Rare",
+    "energyCost": "1",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust",
+      "Retain"
+    ]
+  }
+}

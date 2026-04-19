@@ -1,0 +1,15 @@
+{
+  "cardId": "DramaticEntrance",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Uncommon",
+    "energyCost": "0",
+    "targetType": "AllEnemies",
+    "keywords": [
+      "Exhaust",
+      "Innate"
+    ]
+  }
+}

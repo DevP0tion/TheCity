@@ -1,0 +1,14 @@
+{
+  "cardId": "MoltenFist",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Common",
+    "energyCost": "1",
+    "targetType": "AnyEnemy",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

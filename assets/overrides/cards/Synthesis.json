@@ -1,0 +1,12 @@
+{
+  "cardId": "Synthesis",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Uncommon",
+    "energyCost": "2",
+    "targetType": "AnyEnemy",
+    "keywords": []
+  }
+}

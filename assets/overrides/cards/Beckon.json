@@ -1,0 +1,12 @@
+{
+  "cardId": "Beckon",
+  "sin": "Gluttony",
+  "reason": "",
+  "meta": {
+    "cardType": "Status",
+    "rarity": "Status",
+    "energyCost": "1",
+    "targetType": "None",
+    "keywords": []
+  }
+}

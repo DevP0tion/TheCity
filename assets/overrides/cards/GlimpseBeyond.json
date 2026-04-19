@@ -1,0 +1,14 @@
+{
+  "cardId": "GlimpseBeyond",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Rare",
+    "energyCost": "1",
+    "targetType": "AllAllies",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

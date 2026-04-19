@@ -1,0 +1,14 @@
+{
+  "cardId": "DeprecatedCard",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Curse",
+    "rarity": "Curse",
+    "energyCost": "",
+    "targetType": "None",
+    "keywords": [
+      "Unplayable"
+    ]
+  }
+}

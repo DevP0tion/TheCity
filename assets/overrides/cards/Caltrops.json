@@ -1,0 +1,12 @@
+{
+  "cardId": "Caltrops",
+  "sin": "Pride",
+  "reason": "",
+  "meta": {
+    "cardType": "Power",
+    "rarity": "Event",
+    "energyCost": "1",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

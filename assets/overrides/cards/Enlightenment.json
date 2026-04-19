@@ -1,0 +1,14 @@
+{
+  "cardId": "Enlightenment",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Event",
+    "energyCost": "0",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

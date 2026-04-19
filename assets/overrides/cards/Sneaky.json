@@ -1,0 +1,14 @@
+{
+  "cardId": "Sneaky",
+  "sin": "Envy",
+  "reason": "",
+  "meta": {
+    "cardType": "Power",
+    "rarity": "Rare",
+    "energyCost": "2",
+    "targetType": "Self",
+    "keywords": [
+      "Sly"
+    ]
+  }
+}

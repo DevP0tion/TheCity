@@ -1,0 +1,14 @@
+{
+  "cardId": "Suppress",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Ancient",
+    "energyCost": "0",
+    "targetType": "AnyEnemy",
+    "keywords": [
+      "Innate"
+    ]
+  }
+}

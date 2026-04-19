@@ -1,0 +1,14 @@
+{
+  "cardId": "ByrdonisEgg",
+  "sin": "Pride",
+  "reason": "",
+  "meta": {
+    "cardType": "Quest",
+    "rarity": "Quest",
+    "energyCost": "",
+    "targetType": "None",
+    "keywords": [
+      "Unplayable"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "cardId": "Quadcast",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Ancient",
+    "energyCost": "1",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

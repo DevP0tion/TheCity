@@ -1,0 +1,12 @@
+{
+  "cardId": "SoulStorm",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Rare",
+    "energyCost": "1",
+    "targetType": "AnyEnemy",
+    "keywords": []
+  }
+}

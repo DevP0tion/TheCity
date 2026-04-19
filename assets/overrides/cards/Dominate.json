@@ -1,0 +1,14 @@
+{
+  "cardId": "Dominate",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Uncommon",
+    "energyCost": "1",
+    "targetType": "AnyEnemy",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

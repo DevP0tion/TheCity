@@ -1,0 +1,15 @@
+{
+  "cardId": "Luminesce",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Token",
+    "energyCost": "0",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust",
+      "Retain"
+    ]
+  }
+}

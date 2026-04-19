@@ -1,0 +1,14 @@
+{
+  "cardId": "Reap",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Common",
+    "energyCost": "3",
+    "targetType": "AnyEnemy",
+    "keywords": [
+      "Retain"
+    ]
+  }
+}

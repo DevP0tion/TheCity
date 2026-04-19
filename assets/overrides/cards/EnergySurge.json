@@ -1,0 +1,14 @@
+{
+  "cardId": "EnergySurge",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Uncommon",
+    "energyCost": "1",
+    "targetType": "AllAllies",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

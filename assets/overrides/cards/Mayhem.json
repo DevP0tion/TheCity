@@ -1,0 +1,12 @@
+{
+  "cardId": "Mayhem",
+  "sin": "Pride",
+  "reason": "",
+  "meta": {
+    "cardType": "Power",
+    "rarity": "Rare",
+    "energyCost": "2",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "cardId": "BladeDance",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Common",
+    "energyCost": "1",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

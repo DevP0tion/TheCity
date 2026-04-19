@@ -1,0 +1,15 @@
+{
+  "cardId": "TimesUp",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Rare",
+    "energyCost": "2",
+    "targetType": "AnyEnemy",
+    "keywords": [
+      "Exhaust",
+      "Retain"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "cardId": "DecisionsDecisions",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Rare",
+    "energyCost": "0",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust",
+      "Unplayable"
+    ]
+  }
+}

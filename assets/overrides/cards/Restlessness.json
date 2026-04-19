@@ -1,0 +1,14 @@
+{
+  "cardId": "Restlessness",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Uncommon",
+    "energyCost": "0",
+    "targetType": "Self",
+    "keywords": [
+      "Retain"
+    ]
+  }
+}

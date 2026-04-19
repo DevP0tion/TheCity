@@ -1,0 +1,12 @@
+{
+  "cardId": "Acrobatics",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Common",
+    "energyCost": "1",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

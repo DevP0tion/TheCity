@@ -1,0 +1,14 @@
+{
+  "cardId": "KnowThyPlace",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Common",
+    "energyCost": "0",
+    "targetType": "AnyEnemy",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

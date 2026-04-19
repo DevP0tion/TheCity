@@ -1,0 +1,14 @@
+{
+  "cardId": "Abrasive",
+  "sin": "Envy",
+  "reason": "",
+  "meta": {
+    "cardType": "Power",
+    "rarity": "Rare",
+    "energyCost": "3",
+    "targetType": "Self",
+    "keywords": [
+      "Sly"
+    ]
+  }
+}

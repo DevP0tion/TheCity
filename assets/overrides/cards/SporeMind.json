@@ -1,0 +1,14 @@
+{
+  "cardId": "SporeMind",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Curse",
+    "rarity": "Curse",
+    "energyCost": "1",
+    "targetType": "None",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

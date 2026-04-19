@@ -1,0 +1,14 @@
+{
+  "cardId": "Ignition",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Rare",
+    "energyCost": "1",
+    "targetType": "AnyAlly",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

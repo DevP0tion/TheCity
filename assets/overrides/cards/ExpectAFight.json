@@ -1,0 +1,12 @@
+{
+  "cardId": "ExpectAFight",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Uncommon",
+    "energyCost": "2",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

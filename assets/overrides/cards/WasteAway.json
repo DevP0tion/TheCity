@@ -1,0 +1,12 @@
+{
+  "cardId": "WasteAway",
+  "sin": "Gluttony",
+  "reason": "",
+  "meta": {
+    "cardType": "Status",
+    "rarity": "Status",
+    "energyCost": "",
+    "targetType": "None",
+    "keywords": []
+  }
+}

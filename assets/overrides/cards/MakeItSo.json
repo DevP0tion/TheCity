@@ -1,0 +1,12 @@
+{
+  "cardId": "MakeItSo",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Rare",
+    "energyCost": "0",
+    "targetType": "AnyEnemy",
+    "keywords": []
+  }
+}

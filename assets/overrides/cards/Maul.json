@@ -1,0 +1,12 @@
+{
+  "cardId": "Maul",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Ancient",
+    "energyCost": "1",
+    "targetType": "AnyEnemy",
+    "keywords": []
+  }
+}

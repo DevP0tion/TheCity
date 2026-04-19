@@ -1,0 +1,14 @@
+{
+  "cardId": "FlickFlack",
+  "sin": "Lust",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Common",
+    "energyCost": "1",
+    "targetType": "AllEnemies",
+    "keywords": [
+      "Sly"
+    ]
+  }
+}

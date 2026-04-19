@@ -1,0 +1,14 @@
+{
+  "cardId": "Shockwave",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Uncommon",
+    "energyCost": "2",
+    "targetType": "AllEnemies",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

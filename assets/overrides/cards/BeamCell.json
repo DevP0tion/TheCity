@@ -1,0 +1,12 @@
+{
+  "cardId": "BeamCell",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Common",
+    "energyCost": "0",
+    "targetType": "AnyEnemy",
+    "keywords": []
+  }
+}

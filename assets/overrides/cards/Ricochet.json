@@ -1,0 +1,14 @@
+{
+  "cardId": "Ricochet",
+  "sin": "Lust",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Common",
+    "energyCost": "2",
+    "targetType": "RandomEnemy",
+    "keywords": [
+      "Sly"
+    ]
+  }
+}

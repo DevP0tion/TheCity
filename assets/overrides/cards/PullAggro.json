@@ -1,0 +1,12 @@
+{
+  "cardId": "PullAggro",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Common",
+    "energyCost": "2",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

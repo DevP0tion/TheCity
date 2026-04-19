@@ -1,0 +1,16 @@
+{
+  "cardId": "AscendersBane",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Curse",
+    "rarity": "Curse",
+    "energyCost": "",
+    "targetType": "None",
+    "keywords": [
+      "Eternal",
+      "Ethereal",
+      "Unplayable"
+    ]
+  }
+}

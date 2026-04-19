@@ -1,0 +1,14 @@
+{
+  "cardId": "Nightmare",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Rare",
+    "energyCost": "3",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

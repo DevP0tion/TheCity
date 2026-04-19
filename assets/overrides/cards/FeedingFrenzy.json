@@ -1,0 +1,12 @@
+{
+  "cardId": "FeedingFrenzy",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Event",
+    "energyCost": "0",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

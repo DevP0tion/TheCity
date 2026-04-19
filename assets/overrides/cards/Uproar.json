@@ -1,0 +1,12 @@
+{
+  "cardId": "Uproar",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Common",
+    "energyCost": "2",
+    "targetType": "AnyEnemy",
+    "keywords": []
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "cardId": "HeirloomHammer",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Rare",
+    "energyCost": "2",
+    "targetType": "AnyEnemy",
+    "keywords": []
+  }
+}

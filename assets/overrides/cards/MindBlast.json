@@ -1,0 +1,14 @@
+{
+  "cardId": "MindBlast",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Uncommon",
+    "energyCost": "1",
+    "targetType": "AnyEnemy",
+    "keywords": [
+      "Innate"
+    ]
+  }
+}

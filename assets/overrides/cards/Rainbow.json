@@ -1,0 +1,14 @@
+{
+  "cardId": "Rainbow",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Rare",
+    "energyCost": "2",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

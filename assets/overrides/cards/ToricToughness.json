@@ -1,0 +1,12 @@
+{
+  "cardId": "ToricToughness",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Event",
+    "energyCost": "2",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

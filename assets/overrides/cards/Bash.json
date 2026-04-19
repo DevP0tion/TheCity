@@ -1,0 +1,12 @@
+{
+  "cardId": "Bash",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Basic",
+    "energyCost": "2",
+    "targetType": "AnyEnemy",
+    "keywords": []
+  }
+}

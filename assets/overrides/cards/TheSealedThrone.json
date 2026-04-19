@@ -1,0 +1,12 @@
+{
+  "cardId": "TheSealedThrone",
+  "sin": "Pride",
+  "reason": "",
+  "meta": {
+    "cardType": "Power",
+    "rarity": "Ancient",
+    "energyCost": "1",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

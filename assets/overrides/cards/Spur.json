@@ -1,0 +1,14 @@
+{
+  "cardId": "Spur",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Uncommon",
+    "energyCost": "1",
+    "targetType": "Self",
+    "keywords": [
+      "Retain"
+    ]
+  }
+}

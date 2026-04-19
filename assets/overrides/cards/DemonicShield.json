@@ -1,0 +1,14 @@
+{
+  "cardId": "DemonicShield",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Uncommon",
+    "energyCost": "0",
+    "targetType": "AnyAlly",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

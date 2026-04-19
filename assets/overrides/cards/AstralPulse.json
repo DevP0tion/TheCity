@@ -1,0 +1,12 @@
+{
+  "cardId": "AstralPulse",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Common",
+    "energyCost": "0",
+    "targetType": "AllEnemies",
+    "keywords": []
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "cardId": "Exterminate",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Event",
+    "energyCost": "1",
+    "targetType": "AllEnemies",
+    "keywords": []
+  }
+}

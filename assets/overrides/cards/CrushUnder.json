@@ -1,0 +1,12 @@
+{
+  "cardId": "CrushUnder",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Common",
+    "energyCost": "1",
+    "targetType": "AllEnemies",
+    "keywords": []
+  }
+}

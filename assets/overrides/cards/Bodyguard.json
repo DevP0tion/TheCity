@@ -1,0 +1,12 @@
+{
+  "cardId": "Bodyguard",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Basic",
+    "energyCost": "1",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

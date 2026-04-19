@@ -1,0 +1,14 @@
+{
+  "cardId": "NeowsFury",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Ancient",
+    "energyCost": "1",
+    "targetType": "AnyEnemy",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

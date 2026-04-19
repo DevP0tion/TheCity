@@ -1,0 +1,14 @@
+{
+  "cardId": "EchoForm",
+  "sin": "Pride",
+  "reason": "",
+  "meta": {
+    "cardType": "Power",
+    "rarity": "Rare",
+    "energyCost": "3",
+    "targetType": "Self",
+    "keywords": [
+      "Ethereal"
+    ]
+  }
+}

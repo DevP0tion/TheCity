@@ -1,0 +1,14 @@
+{
+  "cardId": "DyingStar",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Rare",
+    "energyCost": "1",
+    "targetType": "AllEnemies",
+    "keywords": [
+      "Ethereal"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "cardId": "MeteorShower",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Ancient",
+    "energyCost": "0",
+    "targetType": "AllEnemies",
+    "keywords": []
+  }
+}

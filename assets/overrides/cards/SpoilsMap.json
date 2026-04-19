@@ -1,0 +1,14 @@
+{
+  "cardId": "SpoilsMap",
+  "sin": "Pride",
+  "reason": "",
+  "meta": {
+    "cardType": "Quest",
+    "rarity": "Quest",
+    "energyCost": "",
+    "targetType": "Self",
+    "keywords": [
+      "Unplayable"
+    ]
+  }
+}

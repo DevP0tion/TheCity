@@ -1,0 +1,12 @@
+{
+  "cardId": "BulletTime",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Rare",
+    "energyCost": "3",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

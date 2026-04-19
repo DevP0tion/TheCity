@@ -1,0 +1,12 @@
+{
+  "cardId": "Intercept",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Uncommon",
+    "energyCost": "1",
+    "targetType": "AnyAlly",
+    "keywords": []
+  }
+}

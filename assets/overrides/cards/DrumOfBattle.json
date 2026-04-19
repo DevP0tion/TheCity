@@ -1,0 +1,12 @@
+{
+  "cardId": "DrumOfBattle",
+  "sin": "Pride",
+  "reason": "",
+  "meta": {
+    "cardType": "Power",
+    "rarity": "Uncommon",
+    "energyCost": "0",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

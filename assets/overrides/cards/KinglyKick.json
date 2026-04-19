@@ -1,0 +1,12 @@
+{
+  "cardId": "KinglyKick",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Uncommon",
+    "energyCost": "4",
+    "targetType": "AnyEnemy",
+    "keywords": []
+  }
+}

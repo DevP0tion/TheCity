@@ -1,0 +1,12 @@
+{
+  "cardId": "StrikeDefect",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Basic",
+    "energyCost": "1",
+    "targetType": "AnyEnemy",
+    "keywords": []
+  }
+}

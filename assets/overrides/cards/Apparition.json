@@ -1,0 +1,15 @@
+{
+  "cardId": "Apparition",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Ancient",
+    "energyCost": "1",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust",
+      "Ethereal"
+    ]
+  }
+}

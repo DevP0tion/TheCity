@@ -1,0 +1,14 @@
+{
+  "cardId": "Lethality",
+  "sin": "Pride",
+  "reason": "",
+  "meta": {
+    "cardType": "Power",
+    "rarity": "Uncommon",
+    "energyCost": "1",
+    "targetType": "Self",
+    "keywords": [
+      "Ethereal"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "cardId": "MinionSacrifice",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Token",
+    "energyCost": "0",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

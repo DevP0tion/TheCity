@@ -1,0 +1,15 @@
+{
+  "cardId": "BootSequence",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Uncommon",
+    "energyCost": "0",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust",
+      "Innate"
+    ]
+  }
+}

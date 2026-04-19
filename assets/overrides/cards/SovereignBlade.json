@@ -1,0 +1,14 @@
+{
+  "cardId": "SovereignBlade",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Token",
+    "energyCost": "2",
+    "targetType": "AnyEnemy",
+    "keywords": [
+      "Retain"
+    ]
+  }
+}

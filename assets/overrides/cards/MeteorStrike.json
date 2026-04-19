@@ -1,0 +1,12 @@
+{
+  "cardId": "MeteorStrike",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Rare",
+    "energyCost": "5",
+    "targetType": "AnyEnemy",
+    "keywords": []
+  }
+}

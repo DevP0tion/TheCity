@@ -1,0 +1,12 @@
+{
+  "cardId": "PhotonCut",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Common",
+    "energyCost": "1",
+    "targetType": "AnyEnemy",
+    "keywords": []
+  }
+}

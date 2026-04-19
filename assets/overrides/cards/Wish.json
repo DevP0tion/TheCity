@@ -1,0 +1,15 @@
+{
+  "cardId": "Wish",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Ancient",
+    "energyCost": "0",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust",
+      "Retain"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "cardId": "Apotheosis",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Ancient",
+    "energyCost": "2",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust",
+      "Innate"
+    ]
+  }
+}

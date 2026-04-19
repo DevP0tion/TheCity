@@ -1,0 +1,15 @@
+{
+  "cardId": "SweepingGaze",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Token",
+    "energyCost": "0",
+    "targetType": "RandomEnemy",
+    "keywords": [
+      "Exhaust",
+      "Ethereal"
+    ]
+  }
+}

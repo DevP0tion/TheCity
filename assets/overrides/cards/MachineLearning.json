@@ -1,0 +1,12 @@
+{
+  "cardId": "MachineLearning",
+  "sin": "Pride",
+  "reason": "",
+  "meta": {
+    "cardType": "Power",
+    "rarity": "Rare",
+    "energyCost": "1",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

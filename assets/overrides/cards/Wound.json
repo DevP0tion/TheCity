@@ -1,0 +1,14 @@
+{
+  "cardId": "Wound",
+  "sin": "Gluttony",
+  "reason": "",
+  "meta": {
+    "cardType": "Status",
+    "rarity": "Status",
+    "energyCost": "",
+    "targetType": "None",
+    "keywords": [
+      "Unplayable"
+    ]
+  }
+}

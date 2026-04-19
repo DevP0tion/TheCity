@@ -1,0 +1,12 @@
+{
+  "cardId": "Neurosurge",
+  "sin": "Pride",
+  "reason": "",
+  "meta": {
+    "cardType": "Power",
+    "rarity": "Rare",
+    "energyCost": "0",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

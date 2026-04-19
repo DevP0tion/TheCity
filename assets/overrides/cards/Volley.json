@@ -1,0 +1,12 @@
+{
+  "cardId": "Volley",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Uncommon",
+    "energyCost": "0",
+    "targetType": "RandomEnemy",
+    "keywords": []
+  }
+}

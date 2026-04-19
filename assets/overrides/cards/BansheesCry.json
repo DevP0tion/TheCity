@@ -1,0 +1,12 @@
+{
+  "cardId": "BansheesCry",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Rare",
+    "energyCost": "6",
+    "targetType": "AllEnemies",
+    "keywords": []
+  }
+}

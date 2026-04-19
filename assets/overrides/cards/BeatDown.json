@@ -1,0 +1,12 @@
+{
+  "cardId": "BeatDown",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Rare",
+    "energyCost": "3",
+    "targetType": "RandomEnemy",
+    "keywords": []
+  }
+}

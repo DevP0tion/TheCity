@@ -1,0 +1,15 @@
+{
+  "cardId": "PoorSleep",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Curse",
+    "rarity": "Curse",
+    "energyCost": "",
+    "targetType": "None",
+    "keywords": [
+      "Retain",
+      "Unplayable"
+    ]
+  }
+}

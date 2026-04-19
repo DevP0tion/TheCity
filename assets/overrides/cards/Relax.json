@@ -1,0 +1,14 @@
+{
+  "cardId": "Relax",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Ancient",
+    "energyCost": "3",
+    "targetType": "Self",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "cardId": "Melancholy",
+  "sin": "Sloth",
+  "reason": "",
+  "meta": {
+    "cardType": "Skill",
+    "rarity": "Uncommon",
+    "energyCost": "3",
+    "targetType": "Self",
+    "keywords": []
+  }
+}

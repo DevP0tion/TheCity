@@ -1,0 +1,14 @@
+{
+  "cardId": "MinionDiveBomb",
+  "sin": "Gloom",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Token",
+    "energyCost": "1",
+    "targetType": "AnyEnemy",
+    "keywords": [
+      "Exhaust"
+    ]
+  }
+}

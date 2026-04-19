@@ -1,0 +1,12 @@
+{
+  "cardId": "Stomp",
+  "sin": "Wrath",
+  "reason": "",
+  "meta": {
+    "cardType": "Attack",
+    "rarity": "Uncommon",
+    "energyCost": "3",
+    "targetType": "AllEnemies",
+    "keywords": []
+  }
+}
