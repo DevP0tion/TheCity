@@ -3,6 +3,7 @@ using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Hooks;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
@@ -97,10 +98,9 @@ internal static class MapPointTypePatches
         }
     }
 
-    // ── 3. NTopBarRoomIcon.GetHoverTipPrefixForRoomType (Prefix) ──
-    //     private string GetHoverTipPrefixForRoomType()
-    //     무인자 — 내부에서 private GetCurrentMapPointType() 호출
-    //     반환값은 loc prefix 문자열 (예: "ROOM_ANCIENT")
+    // ── 3a. NTopBarRoomIcon.GetHoverTipPrefixForRoomType (Prefix) — 안전망 ──
+    //     원본 default는 throw. OnFocus Prefix가 Abnormality 케이스를 완전히 처리하므로
+    //     이 메서드는 실제로는 호출되지 않지만, 다른 코드가 호출할 경우 대비해 유지.
 
     [HarmonyPatch(typeof(NTopBarRoomIcon), "GetHoverTipPrefixForRoomType")]
     public static class NTopBarRoomIcon_GetHoverTipPrefix_Patch
@@ -112,6 +112,33 @@ internal static class MapPointTypePatches
                               .GetValue<MapPointType>();
             if (mpt != AbnormalityMapPointType.Abnormality) return true;
             __result = AbnormalityMapPointType.LocPrefix;
+            return false;
+        }
+    }
+
+    // ── 3b. NTopBarRoomIcon.OnFocus (Prefix) — 로컬라이제이션 테이블 교체 ──
+    //     원본은 new LocString("static_hover_tips", prefix + ".title") 로 게임 테이블에서 조회하는데,
+    //     ROOM_ABNORMALITY.title은 static_hover_tips에 없어 raw 키가 표시됨.
+    //     Abnormality일 때만 우리 "thecity" 테이블에서 LocString을 생성해 HoverTip을 직접 구성.
+
+    [HarmonyPatch(typeof(NTopBarRoomIcon), "OnFocus")]
+    public static class NTopBarRoomIcon_OnFocus_Patch
+    {
+        public static bool Prefix(NTopBarRoomIcon __instance)
+        {
+            var mpt = Traverse.Create(__instance)
+                              .Method("GetCurrentMapPointType")
+                              .GetValue<MapPointType>();
+            if (mpt != AbnormalityMapPointType.Abnormality) return true;
+
+            var roomIcon = Traverse.Create(__instance).Field("_roomIcon").GetValue<TextureRect>();
+            if (roomIcon == null) return true;  // 원본 실행 시 throw 가능 — 안전하게 위임
+
+            var hoverTip = new HoverTip(
+                Loc.Of($"{AbnormalityMapPointType.LocPrefix}.title"),
+                Loc.Of($"{AbnormalityMapPointType.LocPrefix}.description"));
+            var set = NHoverTipSet.CreateAndShow(roomIcon, hoverTip);
+            set.GlobalPosition = roomIcon.GlobalPosition + new Vector2(0f, __instance.Size.Y + 20f);
             return false;
         }
     }
