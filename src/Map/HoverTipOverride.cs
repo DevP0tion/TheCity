@@ -25,7 +25,6 @@ internal static class HoverTipOverride
 
         // NMapPointHistoryHoverTip은 static_hover_tips 테이블을 참조하므로
         // 우리 thecity 테이블의 Loc.Get을 사용해 라벨만 덮어씀.
-        var title = Loc.Get("ROOM_ABNORMALITY.title");
-        roomStats.Text = title;
+        roomStats.Text = Loc.Get($"{AbnormalityMapPointType.LocPrefix}.title");
     }
 }

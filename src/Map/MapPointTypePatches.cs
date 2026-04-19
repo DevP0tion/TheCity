@@ -21,6 +21,24 @@ namespace TheCity.Map;
 /// </summary>
 internal static class MapPointTypePatches
 {
+    // 커스텀 아이콘 경로 (v1: .tres 미생성 → UpdateIcon Postfix의 별 텍스처가 실제 표시)
+    private const string AbnormalityIconPath = "res://assets/images/map/map_abnormality.tres";
+    private const string AbnormalityOutlinePath = "res://assets/images/map/map_abnormality_outline.tres";
+
+    // 에셋 존재 여부 캐시 (ResourceLoader.Exists 반복 호출 방지).
+    // 에셋 존재 여부는 런타임 중 변하지 않음.
+    private static readonly Dictionary<string, bool> AssetExistsCache = new();
+
+    private static bool AssetExists(string path)
+    {
+        if (AssetExistsCache.TryGetValue(path, out var cached)) return cached;
+        bool exists = ResourceLoader.Exists(path);
+        AssetExistsCache[path] = exists;
+        if (!exists) GD.Print($"[{ModStart.ModId}] Abnormality asset missing at {path}, using fallback.");
+        return exists;
+    }
+
+
     // ── 1. RunManager.RollRoomTypeFor (Prefix) ──
     //     private RoomType RollRoomTypeFor(MapPointType pointType, IEnumerable<RoomType> blacklist)
     //     default: throw ArgumentOutOfRangeException → Prefix + return false로 단락 안전
@@ -44,12 +62,12 @@ internal static class MapPointTypePatches
     public static class NNormalMapPoint_IconName_Patch
     {
         // NNormalMapPoint.IconPath는 "atlases/ui_atlas.sprites/map/icons/{filename}.tres"로 확장.
-        // 게임 .pck에 존재하는 basename만 반환 가능 (로드 실패 방지) → "map_unknown" 반환 후
+        // 게임 .pck에 존재하는 basename만 반환 가능 (로드 실패 방지) → Unknown basename 반환 후
         // UpdateIcon Postfix에서 실제 텍스처를 별 이미지로 교체.
         public static bool Prefix(MapPointType pointType, ref string __result)
         {
             if (pointType != AbnormalityMapPointType.Abnormality) return true;
-            __result = "map_unknown";
+            __result = AbnormalityMapPointType.IconBasename;
             return false;
         }
     }
@@ -93,7 +111,7 @@ internal static class MapPointTypePatches
                               .Method("GetCurrentMapPointType")
                               .GetValue<MapPointType>();
             if (mpt != AbnormalityMapPointType.Abnormality) return true;
-            __result = "ROOM_ABNORMALITY";
+            __result = AbnormalityMapPointType.LocPrefix;
             return false;
         }
     }
@@ -112,35 +130,17 @@ internal static class MapPointTypePatches
     }
 
     // ── 5. ImageHelper.GetRoomIconPath (Prefix) — M2 ──
-    //     public static string? GetRoomIconPath(MapPointType, RoomType, ModelId?)
+    //     에셋 누락 시 바닐라 이벤트 아이콘으로 fallback (원본 로직에 위임)
 
     [HarmonyPatch(typeof(ImageHelper), nameof(ImageHelper.GetRoomIconPath))]
     public static class ImageHelper_GetRoomIconPath_Patch
     {
-        private const string CustomIconPath = "res://assets/images/map/map_abnormality.tres";
-        private static bool? _assetExists;
-
         public static bool Prefix(MapPointType mapPointType, ref string? __result)
         {
             if (mapPointType != AbnormalityMapPointType.Abnormality) return true;
-            if (AssetExists(CustomIconPath))
-            {
-                __result = CustomIconPath;
-                return false;
-            }
-            // 에셋 누락 시 바닐라 이벤트 아이콘으로 fallback (원본 로직에 위임)
-            return true;
-        }
-
-        private static bool AssetExists(string path)
-        {
-            if (_assetExists.HasValue) return _assetExists.Value;
-            _assetExists = ResourceLoader.Exists(path);
-            if (!_assetExists.Value)
-            {
-                GD.Print($"[{ModStart.ModId}] Abnormality icon missing at {path}, using fallback.");
-            }
-            return _assetExists.Value;
+            if (!AssetExists(AbnormalityIconPath)) return true;
+            __result = AbnormalityIconPath;
+            return false;
         }
     }
 
@@ -149,25 +149,12 @@ internal static class MapPointTypePatches
     [HarmonyPatch(typeof(ImageHelper), nameof(ImageHelper.GetRoomIconOutlinePath))]
     public static class ImageHelper_GetRoomIconOutlinePath_Patch
     {
-        private const string CustomOutlinePath = "res://assets/images/map/map_abnormality_outline.tres";
-        private static bool? _assetExists;
-
         public static bool Prefix(MapPointType mapPointType, ref string? __result)
         {
             if (mapPointType != AbnormalityMapPointType.Abnormality) return true;
-            if (AssetExists(CustomOutlinePath))
-            {
-                __result = CustomOutlinePath;
-                return false;
-            }
-            return true;
-        }
-
-        private static bool AssetExists(string path)
-        {
-            if (_assetExists.HasValue) return _assetExists.Value;
-            _assetExists = ResourceLoader.Exists(path);
-            return _assetExists.Value;
+            if (!AssetExists(AbnormalityOutlinePath)) return true;
+            __result = AbnormalityOutlinePath;
+            return false;
         }
     }
 

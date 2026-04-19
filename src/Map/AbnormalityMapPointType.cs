@@ -16,6 +16,16 @@ public static class AbnormalityMapPointType
 {
     public const MapPointType Abnormality = (MapPointType)200;
 
+    /// <summary>로컬라이제이션 키 prefix. <c>{LocPrefix}.title</c>, <c>{LocPrefix}.description</c>.</summary>
+    public const string LocPrefix = "ROOM_ABNORMALITY";
+
+    /// <summary>
+    /// 아이콘 basename. 게임 atlas에 실제 basename 주입 불가 → vanilla Unknown 아이콘 키로 위장하고
+    /// <see cref="MegaCrit.Sts2.Core.Nodes.Screens.Map.NNormalMapPoint"/>.UpdateIcon Postfix에서
+    /// 별 텍스처로 교체.
+    /// </summary>
+    public const string IconBasename = "map_unknown";
+
     /// <summary>
     /// 상수가 실제로 참조되는 시점 확인용 (const는 정적 초기화가 없지만, 호출 자체가 심볼 유지).
     /// <see cref="ModStart.ModInit"/>에서 <see cref="HarmonyLib.Harmony.PatchAll"/> 전에 호출.

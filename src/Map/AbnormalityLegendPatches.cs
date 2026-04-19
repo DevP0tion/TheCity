@@ -24,6 +24,7 @@ namespace TheCity.Map;
 internal static class AbnormalityLegendPatches
 {
     private const string LegendItemName = "AbnormalityLegendItem";
+    private const string UnknownTemplateName = "UnknownLegendItem";
     private const string LegendLocKey = "LEGEND_ABNORMALITY";
     private const string FallbackTitle = "Abnormality";
 
@@ -54,10 +55,8 @@ internal static class AbnormalityLegendPatches
         {
             if (name != LegendItemName) return true;
 
-            GD.Print($"[{ModStart.ModId}] Legend: SetLocalizedFields Prefix fired for {name}");
-
-            // 전체 로직을 try-catch로 감싸 어떤 예외가 나도 return false를 보장.
             // 원본 switch가 "AbnormalityLegendItem"을 모르므로 원본 실행 시 throw 발생 → 라벨 미설정.
+            // try-catch로 어떤 예외가 나도 return false를 보장.
             try
             {
                 var label = __instance.GetNodeOrNull<MegaLabel>("MegaLabel");
@@ -73,11 +72,6 @@ internal static class AbnormalityLegendPatches
                         }
                     }
                     label.SetTextAutoSize(title);
-                    GD.Print($"[{ModStart.ModId}] Legend: label set to '{title}'");
-                }
-                else
-                {
-                    GD.Print($"[{ModStart.ModId}] Legend: MegaLabel child not found on {name}");
                 }
 
                 // HoverTip: thecity 테이블 키가 있든 없든 LocString 생성 시 예외 가능 → try 안에서.
@@ -98,7 +92,7 @@ internal static class AbnormalityLegendPatches
                 catch { /* swallow */ }
             }
 
-            return false; // 원본 실행 금지 — 어떤 상황에서도 Abnormality는 원본 switch의 default throw를 피해야 함
+            return false;
         }
     }
 
@@ -108,65 +102,39 @@ internal static class AbnormalityLegendPatches
     {
         public static void Postfix(NMapScreen __instance)
         {
-            GD.Print($"[{ModStart.ModId}] Legend: NMapScreen._Ready Postfix fired (healthy={AbnormalityPreflight.Healthy})");
-
             if (!AbnormalityPreflight.Healthy) return;
 
             var legendItems = Traverse.Create(__instance).Field("_legendItems").GetValue<Control>();
-            if (legendItems == null)
-            {
-                GD.Print($"[{ModStart.ModId}] Legend: _legendItems field is null, skipping.");
-                return;
-            }
+            if (legendItems == null) return;
 
-            // 중복 추가 방지
-            foreach (var child in legendItems.GetChildren())
-            {
-                if (child is NMapLegendItem && child.Name == LegendItemName) return;
-            }
-
-            // 템플릿: UnknownLegendItem을 복제 (아이콘 TextureRect 구조 포함)
+            // 템플릿: UnknownLegendItem을 복제 (아이콘 TextureRect 구조 포함). 중복 추가 방지 겸임.
             NMapLegendItem? template = null;
             foreach (var child in legendItems.GetChildren())
             {
-                if (child is NMapLegendItem item && item.Name == "UnknownLegendItem")
-                {
-                    template = item;
-                    break;
-                }
+                if (child is not NMapLegendItem item) continue;
+                if (item.Name == LegendItemName) return;  // 이미 추가됨
+                if (item.Name == UnknownTemplateName) template = item;
             }
-            if (template == null)
-            {
-                GD.Print($"[{ModStart.ModId}] Legend: UnknownLegendItem template not found, Abnormality legend skipped.");
-                return;
-            }
+            if (template == null) return;
 
-            GD.Print($"[{ModStart.ModId}] Legend: duplicating UnknownLegendItem template");
             var clone = template.Duplicate();
             if (clone is not NMapLegendItem newItem)
             {
-                GD.Print($"[{ModStart.ModId}] Legend: Duplicate returned non-NMapLegendItem (type={clone?.GetType().Name ?? "null"}).");
                 clone?.QueueFree();
                 return;
             }
             newItem.Name = LegendItemName;
-            GD.Print($"[{ModStart.ModId}] Legend: renamed clone to '{newItem.Name}', adding as child");
             legendItems.AddChild(newItem);  // AddChild 시 _Ready 실행 (패치된 SetLocalizedFields/SetMapPointType 호출됨)
-            GD.Print($"[{ModStart.ModId}] Legend: AddChild complete, Name now = '{newItem.Name}'");
 
             // 방어적 재호출: _Ready가 타이밍/중간 상태로 잘못된 이름으로 호출됐을 가능성 대비.
             // 우리 Prefix는 LegendItemName에만 매칭되므로 멱등.
             InvokePrivateVoid(newItem, "SetLocalizedFields", LegendItemName);
             InvokePrivateVoid(newItem, "SetMapPointType", LegendItemName);
 
-            // 아이콘을 별 텍스처로 교체
             var icon = Traverse.Create(newItem).Field("_icon").GetValue<TextureRect>();
-            if (icon != null)
-            {
-                icon.Texture = StarTextureFactory.Star;
-            }
+            if (icon != null) icon.Texture = StarTextureFactory.Star;
 
-            // Focus neighbor 체인 재계산 (새 항목이 맨 끝에 추가됨)
+            // Focus neighbor 체인 재계산 (새 항목이 맨 끝에 추가됨). Right는 수평 이동 없음.
             var list = legendItems.GetChildren().OfType<NMapLegendItem>().ToList();
             for (int i = 0; i < list.Count; i++)
             {

@@ -23,6 +23,7 @@ public partial class SinStackPanel : PanelContainer
 
     private VBoxContainer _container = null!;
     private readonly Dictionary<Sin, SinDisplay> _displays = new();
+    private readonly Dictionary<string, SinDisplay> _displaysById = new();
     private CardModel? _target;
 
     public override void _Ready()
@@ -64,6 +65,7 @@ public partial class SinStackPanel : PanelContainer
             display.MouseFilter = MouseFilterEnum.Ignore;
             _container.AddChild(display);
             _displays[sin] = display;
+            _displaysById[sin.ToResourceId()] = display;
         }
 
         SharedResourceManager.ValueChanged += OnValueChanged;
@@ -75,6 +77,7 @@ public partial class SinStackPanel : PanelContainer
         SharedResourceManager.ValueChanged -= OnValueChanged;
         SharedResourceManager.CleanedUp -= OnCleanedUp;
         _displays.Clear();
+        _displaysById.Clear();
         _target = null;
         if (Instance == this) Instance = null;
     }
@@ -94,38 +97,46 @@ public partial class SinStackPanel : PanelContainer
         Visible = false;
     }
 
-    // ── 값 갱신 ──
-
     private void RefreshValues()
     {
         foreach (var (sin, display) in _displays)
         {
-            int value = sin.Get();
-            if (value == 0)
-            {
-                display.Visible = false;
-            }
-            else
-            {
-                display.Visible = true;
-                display.SetValue(value);
-            }
+            ApplyValue(display, sin.Get());
+        }
+    }
+
+    private static void ApplyValue(SinDisplay display, int value)
+    {
+        if (value == 0)
+        {
+            display.Visible = false;
+        }
+        else
+        {
+            display.Visible = true;
+            display.SetValue(value);
         }
     }
 
     private void OnValueChanged(string id, int oldValue, int newValue)
     {
         // 네트워크 스레드에서 호출될 가능성이 있으므로 메인 스레드로 마샬링.
+        // 바인딩된 카드가 있고, 변경된 리소스가 Sin일 때만 해당 display 하나만 갱신.
         if (_target == null) return;
-        CallDeferred(MethodName.RefreshValues);
+        if (!_displaysById.ContainsKey(id)) return;
+        CallDeferred(nameof(ApplySingle), id, newValue);
+    }
+
+    private void ApplySingle(string id, int value)
+    {
+        if (_displaysById.TryGetValue(id, out var display))
+            ApplyValue(display, value);
     }
 
     private void OnCleanedUp()
     {
         CallDeferred(MethodName.Unbind);
     }
-
-    // ── 카드 위치 추적 ──
 
     public override void _Process(double delta)
     {

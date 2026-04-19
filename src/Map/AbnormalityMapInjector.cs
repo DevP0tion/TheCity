@@ -14,8 +14,6 @@ namespace TheCity.Map;
 /// </summary>
 public static class AbnormalityMapInjector
 {
-    private static bool _firstCallLogged;
-
     /// <summary>
     /// 각 후보에 대해 독립 확률로 Abnormality 적용. 이미 주입된 맵이면 멱등(idempotent)으로 스킵.
     /// </summary>
@@ -23,19 +21,19 @@ public static class AbnormalityMapInjector
     {
         if (!AbnormalityPreflight.Healthy) return map;
 
-        LogFirstCall();
-
         int chance = TheCityConfig.AbnormalitySpawnChance;
         if (chance <= 0) return map;
 
+        var allPoints = map.GetAllMapPoints();
+
         // 멱등: 이미 주입된 맵이면 스킵
-        if (map.GetAllMapPoints().Any(p => p.PointType == AbnormalityMapPointType.Abnormality))
+        if (allPoints.Any(p => p.PointType == AbnormalityMapPointType.Abnormality))
         {
             return map;
         }
 
         // 후보: Unknown(=?) 노드 중 수정 가능
-        var candidates = map.GetAllMapPoints()
+        var candidates = allPoints
             .Where(p => p.PointType == MapPointType.Unknown && p.CanBeModified)
             .ToList();
 
@@ -74,12 +72,5 @@ public static class AbnormalityMapInjector
 
         GD.Print($"[{ModStart.ModId}] AbnormalityInjector: act {actIndex}, chance={chance}%, candidates={candidates.Count}, placed={placed}.");
         return map;
-    }
-
-    private static void LogFirstCall()
-    {
-        if (_firstCallLogged) return;
-        _firstCallLogged = true;
-        GD.Print($"[{ModStart.ModId}] AbnormalityInjector: first invocation (Hook.ModifyGeneratedMap patch active).");
     }
 }
