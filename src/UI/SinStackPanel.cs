@@ -91,7 +91,12 @@ public partial class SinStackPanel : PanelContainer
     }
 
     /// <summary>드래그 시작: 대상 카드 바인딩 + 표시.</summary>
-    public void Bind(CardModel model)
+    /// <remarks>
+    /// internal로 두어 Godot source generator의 MethodName/InvokeGodotClassMethod에서 제외.
+    /// CardModel 파라미터가 Variant-convertible이 아니라 generator가 문제 있는 IL을 생성 →
+    /// MonoMod/Harmony JIT 훅에서 ArgumentException 발생. C# 직접 호출만 사용하므로 internal로 충분.
+    /// </remarks>
+    internal void Bind(CardModel model)
     {
         _target = model;
         RefreshValues();
@@ -99,7 +104,7 @@ public partial class SinStackPanel : PanelContainer
     }
 
     /// <summary>드래그 종료: 숨김.</summary>
-    public void Unbind()
+    internal void Unbind()
     {
         _target = null;
         Visible = false;
