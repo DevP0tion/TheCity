@@ -80,17 +80,41 @@ sb.AppendLine("using System.Collections.Generic;");
 sb.AppendLine();
 sb.AppendLine("namespace TheCity.Resource;");
 sb.AppendLine();
+sb.AppendLine("/// <summary>");
+sb.AppendLine("/// Build-time generated card→Sin map. Intended as a one-shot data vehicle:");
+sb.AppendLine("/// ModInit calls <see cref=\"TakeOwnership\"/>, transfers data to a runtime registry,");
+sb.AppendLine("/// and the static field here is nulled so GC can reclaim this Dictionary.");
+sb.AppendLine("/// </summary>");
 sb.AppendLine("public static class CardSinMap");
 sb.AppendLine("{");
-sb.AppendLine($"    /// <summary>{rows.Count} entries — built from assets/overrides/cards/*.json</summary>");
-sb.AppendLine($"    public static readonly IReadOnlyDictionary<string, Sin> ById =");
-sb.AppendLine($"        new Dictionary<string, Sin>({rows.Count})");
-sb.AppendLine("        {");
+sb.AppendLine($"    private static Dictionary<string, Sin>? _data = new({rows.Count})");
+sb.AppendLine("    {");
 foreach (var (id, sin, _) in rows)
 {
-    sb.AppendLine($"            {{ \"{Escape(id)}\", Sin.{sin} }},");
+    sb.AppendLine($"        {{ \"{Escape(id)}\", Sin.{sin} }},");
 }
-sb.AppendLine("        };");
+sb.AppendLine("    };");
+sb.AppendLine();
+sb.AppendLine("    /// <summary>True after <see cref=\"TakeOwnership\"/> has been called.</summary>");
+sb.AppendLine("    public static bool IsReleased => _data is null;");
+sb.AppendLine();
+sb.AppendLine("    /// <summary>Read-only view while still loaded. Throws after <see cref=\"TakeOwnership\"/>.</summary>");
+sb.AppendLine("    public static IReadOnlyDictionary<string, Sin> ById");
+sb.AppendLine("        => _data ?? throw new System.InvalidOperationException(");
+sb.AppendLine("            \"CardSinMap has been released. Use a runtime registry instead.\");");
+sb.AppendLine();
+sb.AppendLine("    /// <summary>");
+sb.AppendLine("    /// One-time ownership transfer. Returns the underlying Dictionary and");
+sb.AppendLine("    /// nulls out the static reference so the GC can reclaim it once the caller");
+sb.AppendLine("    /// drops its reference. Calling a second time throws.");
+sb.AppendLine("    /// </summary>");
+sb.AppendLine("    public static Dictionary<string, Sin> TakeOwnership()");
+sb.AppendLine("    {");
+sb.AppendLine("        var data = _data ?? throw new System.InvalidOperationException(");
+sb.AppendLine("            \"CardSinMap.TakeOwnership already called.\");");
+sb.AppendLine("        _data = null;");
+sb.AppendLine("        return data;");
+sb.AppendLine("    }");
 sb.AppendLine("}");
 
 var newContent = sb.ToString();

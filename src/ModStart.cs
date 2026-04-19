@@ -31,6 +31,10 @@ public static class ModStart
         // 7대죄 자원 등록
         SinExtensions.RegisterAll();
 
+        // 카드 → Sin 매핑 로드. CardSinMap(빌드 생성 정적 데이터)을 런타임 레지스트리로 이전하고
+        // 원본 정적 필드는 해제되어 GC 대상이 됨.
+        CardSinRegistry.LoadOnce();
+
         GD.Print($"[{ModId}] Mod initialized.");
     }
 }
