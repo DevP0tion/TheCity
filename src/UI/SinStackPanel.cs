@@ -1,5 +1,4 @@
 // Design Ref: Plan §SinStackPanel — 드래그 중 카드 위의 Sin 7개 수직 스택.
-// Plan SC: R1(드래그 카드 바인딩), R2(값 0 숨김), R4(수직 정렬), R5(ValueChanged 구독).
 using System;
 using System.Collections.Generic;
 using Godot;
@@ -11,35 +10,47 @@ namespace TheCity.UI;
 
 /// <summary>
 /// 드래그/선택 중인 카드 바로 위에 떠 있는 7대죄 수직 스택.
-/// HoveredModelTracker.OnLocalCardSelected에서 Bind, OnLocalCardDeselected에서 Unbind.
-/// _Process에서 카드 GlobalPosition을 추적하여 자신의 위치를 갱신.
-/// 값이 0인 Sin도 회색 "0"으로 표시 (Sin 획득 메커니즘 도입 전 가시성 확보).
 ///
-/// 구현 메모: Godot의 CallDeferred(params Variant[]) 경로는 MonoMod/Harmony의 JIT 훅과
-/// 충돌해 "Value does not fall within the expected range" 예외를 유발함.
-/// 대신 lock + Queue 기반으로 네트워크 스레드 → 메인 스레드 마샬링을 수행.
+/// 구현 메모: Godot source generator(partial + InvokeGodotClassMethod)가
+/// MonoMod/Harmony JIT 훅과 충돌해 ArgumentException을 유발함.
+/// 이를 회피하기 위해 커스텀 Node 서브클래스 없이 <b>정적 헬퍼</b> + plain
+/// <see cref="PanelContainer"/>/<see cref="Godot.Timer"/> 조립으로 구현.
+/// - Godot 가상 메서드 override 없음 → InvokeGodotClassMethod 생성 없음
+/// - <c>Timer.Timeout</c> 시그널로 매 프레임 업데이트 (16ms 주기)
+/// - <c>TreeExiting</c> 시그널로 cleanup
 /// </summary>
-public partial class SinStackPanel : PanelContainer
+public static class SinStackPanel
 {
-    public static SinStackPanel? Instance { get; private set; }
+    public static bool IsActive => _container != null && GodotObject.IsInstanceValid(_container);
 
     private const float VerticalGap = 12f;      // 카드 상단과 스택 하단 사이 여백
+    private const double TickInterval = 0.016;  // ~60 FPS
 
-    private VBoxContainer _container = null!;
-    private readonly Dictionary<Sin, SinDisplay> _displays = new();
-    private readonly Dictionary<string, SinDisplay> _displaysById = new();
-    private readonly Queue<(string id, int value)> _pendingUpdates = new();
-    private readonly object _pendingLock = new();
-    private CardModel? _target;
-    private bool _pendingUnbind;
+    private static PanelContainer? _container;
+    private static readonly Dictionary<Sin, SinDisplay> _displays = new();
+    private static readonly Dictionary<string, SinDisplay> _displaysById = new();
+    private static readonly Queue<(string id, int value)> _pendingUpdates = new();
+    private static readonly object _pendingLock = new();
+    private static CardModel? _target;
+    private static bool _pendingUnbind;
 
-    public override void _Ready()
+    // ── 라이프사이클 ──
+
+    /// <summary>
+    /// NCombatRoom.Ui에 패널 주입. 전투방마다 1회 호출.
+    /// 이미 붙어있으면 무시(idempotent).
+    /// </summary>
+    public static void AttachTo(Control parent)
     {
-        Instance = this;
-        Name = "SinStackPanel";
-        Visible = false;
-        TopLevel = true;                         // 부모 레이아웃 무시하고 GlobalPosition 직접 제어
-        MouseFilter = MouseFilterEnum.Ignore;    // 카드 입력 가로채지 않음
+        if (IsActive) return;
+
+        var panel = new PanelContainer
+        {
+            Name = "SinStackPanel",
+            Visible = false,
+            TopLevel = true,                                    // 부모 레이아웃 무시, GlobalPosition 직접 제어
+            MouseFilter = Control.MouseFilterEnum.Ignore,       // 카드 입력 가로채지 않음
+        };
 
         var style = new StyleBoxFlat
         {
@@ -58,76 +69,63 @@ public partial class SinStackPanel : PanelContainer
             BorderWidthTop = 1,
             BorderColor = new Color(0.4f, 0.6f, 0.8f, 0.55f),
         };
-        AddThemeStyleboxOverride("panel", style);
+        panel.AddThemeStyleboxOverride("panel", style);
 
-        _container = new VBoxContainer();
-        _container.AddThemeConstantOverride("separation", 3);
-        _container.MouseFilter = MouseFilterEnum.Ignore;
-        AddChild(_container);
+        var box = new VBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore };
+        box.AddThemeConstantOverride("separation", 3);
+        panel.AddChild(box);
 
-        // 7대죄 고정 순서로 선생성 (enum 선언 순). generic 형식은 dynamic-code 요구 없음.
+        _displays.Clear();
+        _displaysById.Clear();
         foreach (Sin sin in Enum.GetValues<Sin>())
         {
-            var display = new SinDisplay(sin);
-            display.MouseFilter = MouseFilterEnum.Ignore;
-            _container.AddChild(display);
+            var display = new SinDisplay(sin) { MouseFilter = Control.MouseFilterEnum.Ignore };
+            box.AddChild(display);
             _displays[sin] = display;
             _displaysById[sin.ToResourceId()] = display;
         }
 
+        var timer = new Godot.Timer
+        {
+            ProcessCallback = Godot.Timer.TimerProcessCallback.Idle,
+            WaitTime = TickInterval,
+            Autostart = true,
+            OneShot = false,
+        };
+        timer.Timeout += OnTick;
+        panel.AddChild(timer);
+
+        panel.TreeExiting += OnTreeExiting;
+
+        parent.AddChild(panel);
+        _container = panel;
+
         SharedResourceManager.ValueChanged += OnValueChanged;
         SharedResourceManager.CleanedUp += OnCleanedUp;
-    }
 
-    public override void _ExitTree()
-    {
-        SharedResourceManager.ValueChanged -= OnValueChanged;
-        SharedResourceManager.CleanedUp -= OnCleanedUp;
-        _displays.Clear();
-        _displaysById.Clear();
-        lock (_pendingLock) _pendingUpdates.Clear();
-        _target = null;
-        if (Instance == this) Instance = null;
+        GD.Print($"[{ModStart.ModId}] SinStackPanel attached.");
     }
 
     /// <summary>드래그 시작: 대상 카드 바인딩 + 표시.</summary>
-    /// <remarks>
-    /// internal로 두어 Godot source generator의 MethodName/InvokeGodotClassMethod에서 제외.
-    /// CardModel 파라미터가 Variant-convertible이 아니라 generator가 문제 있는 IL을 생성 →
-    /// MonoMod/Harmony JIT 훅에서 ArgumentException 발생. C# 직접 호출만 사용하므로 internal로 충분.
-    /// </remarks>
-    internal void Bind(CardModel model)
+    public static void Bind(CardModel model)
     {
+        if (!IsActive) return;
         _target = model;
         RefreshValues();
-        Visible = true;
+        _container!.Visible = true;
     }
 
     /// <summary>드래그 종료: 숨김.</summary>
-    internal void Unbind()
+    public static void Unbind()
     {
         _target = null;
-        Visible = false;
+        if (_container != null && GodotObject.IsInstanceValid(_container))
+            _container.Visible = false;
     }
 
-    private void RefreshValues()
-    {
-        foreach (var (sin, display) in _displays)
-        {
-            ApplyValue(display, sin.Get());
-        }
-    }
+    // ── 이벤트 핸들러 ──
 
-    private static void ApplyValue(SinDisplay display, int value)
-    {
-        display.Visible = true;
-        display.SetValue(value);
-    }
-
-    // ── 이벤트 핸들러 (네트워크 스레드에서 호출될 수 있음) ──
-    // CallDeferred는 MonoMod/Harmony JIT 훅과 충돌 → lock+Queue로 대체.
-
-    private void OnValueChanged(string id, int oldValue, int newValue)
+    private static void OnValueChanged(string id, int oldValue, int newValue)
     {
         if (_target == null) return;
         if (!_displaysById.ContainsKey(id)) return;
@@ -137,14 +135,28 @@ public partial class SinStackPanel : PanelContainer
         }
     }
 
-    private void OnCleanedUp()
+    private static void OnCleanedUp()
     {
         _pendingUnbind = true;
     }
 
-    public override void _Process(double delta)
+    private static void OnTreeExiting()
     {
-        // 1) 이벤트 큐 플러시 (메인 스레드).
+        SharedResourceManager.ValueChanged -= OnValueChanged;
+        SharedResourceManager.CleanedUp -= OnCleanedUp;
+        _displays.Clear();
+        _displaysById.Clear();
+        lock (_pendingLock) _pendingUpdates.Clear();
+        _target = null;
+        _container = null;
+    }
+
+    // ── 매 프레임 업데이트 (Timer.Timeout) ──
+
+    private static void OnTick()
+    {
+        if (!IsActive) return;
+
         if (_pendingUnbind)
         {
             _pendingUnbind = false;
@@ -162,22 +174,36 @@ public partial class SinStackPanel : PanelContainer
             }
         }
 
-        // 2) 카드 위치 추적.
         if (_target == null) return;
 
         var cardNode = NCombatRoom.Instance?.Ui?.Hand?.GetCardHolder(_target)?.CardNode;
         if (cardNode == null || !GodotObject.IsInstanceValid(cardNode))
         {
-            // 카드가 pile을 떠났다(exhaust/discard/플레이 완료) → 자동 해제.
             Unbind();
             return;
         }
 
         var rect = cardNode.GetGlobalRect();
-        var mySize = Size;
-        GlobalPosition = new Vector2(
+        var mySize = _container!.Size;
+        _container.GlobalPosition = new Vector2(
             rect.Position.X + rect.Size.X * 0.5f - mySize.X * 0.5f,
             rect.Position.Y - mySize.Y - VerticalGap
         );
+    }
+
+    // ── 헬퍼 ──
+
+    private static void RefreshValues()
+    {
+        foreach (var (sin, display) in _displays)
+        {
+            ApplyValue(display, sin.Get());
+        }
+    }
+
+    private static void ApplyValue(SinDisplay display, int value)
+    {
+        display.Visible = true;
+        display.SetValue(value);
     }
 }

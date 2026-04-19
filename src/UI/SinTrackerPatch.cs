@@ -14,11 +14,9 @@ public static class SinStackInjectPatch
 {
     public static void Postfix(NCombatRoom __instance)
     {
-        if (SinStackPanel.Instance != null) return;
+        if (SinStackPanel.IsActive) return;
         if (__instance.Ui == null) return;
-
-        var panel = new SinStackPanel();
-        __instance.Ui.AddChild(panel);
+        SinStackPanel.AttachTo(__instance.Ui);
     }
 }
 
@@ -27,7 +25,7 @@ public static class SinStackSelectPatch
 {
     public static void Postfix(CardModel cardModel)
     {
-        SinStackPanel.Instance?.Bind(cardModel);
+        SinStackPanel.Bind(cardModel);
     }
 }
 
@@ -36,6 +34,6 @@ public static class SinStackDeselectPatch
 {
     public static void Postfix()
     {
-        SinStackPanel.Instance?.Unbind();
+        SinStackPanel.Unbind();
     }
 }
