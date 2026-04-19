@@ -30,6 +30,6 @@ internal class TheCityConfig : SimpleModConfig
     /// 결정론적 해시로 판정하여 멀티플레이어 safe.
     /// </summary>
     [ConfigSection("MapSettings")]
-    [SliderRange(0, 100)]
+    [ConfigSlider(0, 100)]
     public static int AbnormalitySpawnChance { get; set; } = 20;
 }

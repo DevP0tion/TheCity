@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1" InitialTargets="CheckDependencyPaths">
     <Import Project=".\Sts2PathDiscovery.props"/>
     <PropertyGroup>
+        <Configurations>Debug;Release;Publish</Configurations>
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>true</ImplicitUsings>
         <Nullable>enable</Nullable> <!--Makes code analysis regarding null values stricter.-->
@@ -77,6 +78,27 @@
               DestinationFolder="$(ModsPath)/$(MSBuildProjectName)" />
     </Target>
 
+    <!-- ── Publish 구성: Rider Configuration 드롭다운에서 선택 → Ctrl+B로 DLL+PCK 빌드 ── -->
+    <PropertyGroup Condition="'$(Configuration)' == 'Publish'">
+        <Optimize>true</Optimize>
+        <DebugType>portable</DebugType>
+    </PropertyGroup>
+
+    <Target Name="NeedGodotForBuildPublish" BeforeTargets="Build"
+            Condition="'$(Configuration)' == 'Publish'">
+        <Error Text="Godot path must be set up before publishing; Godot not found at path '$(GodotPath)'. Check Directory.Build.props file."
+               Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')"/>
+    </Target>
+
+    <Target Name="GodotPublishOnBuild" AfterTargets="CopyToModsFolderOnBuild"
+            Condition="'$(Configuration)' == 'Publish' and '$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
+        <Message Text="Exporting Godot .pck to mods folder" Importance="high"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(ModsPath)$(MSBuildProjectName)/$(MSBuildProjectName).pck&quot;"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
+              ContinueOnError="WarnAndContinue"/>
+    </Target>
+
+    <!-- ── dotnet publish (기존 CLI 호환 유지) ── -->
     <Target Name="NeedGodotForPublish" BeforeTargets="Publish">
         <Error Text=" Godot path must be set up before publishing; Godot not found at path '$(GodotPath)'. Check Directory.Build.props file."
                Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')"/>
