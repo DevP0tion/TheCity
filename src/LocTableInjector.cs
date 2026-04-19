@@ -23,13 +23,15 @@ internal static class LocTableInjector
     public const string TableName = "thecity";
 
     /// <summary>현재 LocManager 언어에 맞춰 테이블 주입 (ModInit에서 1회 호출).</summary>
+    /// <remarks>
+    /// ModInit은 <see cref="MegaCrit.Sts2.Core.Helpers.OneTimeInitialization.ExecuteEssential"/> 중
+    /// <c>ModManager.Initialize</c>에서 호출되며, 이때는 아직 <see cref="LocManager.Initialize"/> 전이라
+    /// <c>LocManager.Instance == null</c>일 수 있음. 이 경우 조용히 넘어가고
+    /// <see cref="SetLanguageInternal_Patch"/>의 Postfix가 직후 LocManager 생성 시점에 주입을 수행.
+    /// </remarks>
     public static void InjectForCurrentLanguage()
     {
-        if (LocManager.Instance == null)
-        {
-            GD.PushError($"[{ModStart.ModId}] Loc: LocManager.Instance is null during injection.");
-            return;
-        }
+        if (LocManager.Instance == null) return;  // Postfix가 곧 처리
         Inject(LocManager.Instance, LocManager.Instance.Language);
     }
 
