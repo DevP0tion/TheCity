@@ -13,7 +13,7 @@ namespace TheCity.UI;
 /// 드래그/선택 중인 카드 바로 위에 떠 있는 7대죄 수직 스택.
 /// HoveredModelTracker.OnLocalCardSelected에서 Bind, OnLocalCardDeselected에서 Unbind.
 /// _Process에서 카드 GlobalPosition을 추적하여 자신의 위치를 갱신.
-/// 값이 0인 Sin은 숨겨 스택이 동적으로 축소됨.
+/// 값이 0인 Sin도 회색 "0"으로 표시 (Sin 획득 메커니즘 도입 전 가시성 확보).
 /// </summary>
 public partial class SinStackPanel : PanelContainer
 {
@@ -107,15 +107,8 @@ public partial class SinStackPanel : PanelContainer
 
     private static void ApplyValue(SinDisplay display, int value)
     {
-        if (value == 0)
-        {
-            display.Visible = false;
-        }
-        else
-        {
-            display.Visible = true;
-            display.SetValue(value);
-        }
+        display.Visible = true;
+        display.SetValue(value);
     }
 
     private void OnValueChanged(string id, int oldValue, int newValue)

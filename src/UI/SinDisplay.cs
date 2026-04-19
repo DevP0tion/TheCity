@@ -72,12 +72,24 @@ public partial class SinDisplay : HBoxContainer
         AddChild(_valueLabel);
     }
 
-    /// <summary>값 갱신 + 플래시 트리거.</summary>
+    /// <summary>값 갱신 + 플래시 트리거. 값이 0이면 dim 색상, 양수면 sin 색상 + 플래시.</summary>
     public void SetValue(int value)
     {
-        if (_valueLabel != null)
-            _valueLabel.Text = value.ToString();
-        _animProgress = 0f;
+        if (_valueLabel == null) return;
+
+        _valueLabel.Text = value.ToString();
+        if (value <= 0)
+        {
+            // 미획득 상태: 플래시 없이 어두운 회색으로 고정
+            _animProgress = 1f;
+            _valueLabel.AddThemeColorOverride("font_color", new Color(0.45f, 0.45f, 0.5f));
+            if (_icon != null) _icon.Modulate = new Color(1f, 1f, 1f, 0.4f);
+        }
+        else
+        {
+            _animProgress = 0f;
+            if (_icon != null) _icon.Modulate = Colors.White;
+        }
     }
 
     public override void _Process(double delta)
