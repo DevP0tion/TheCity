@@ -10,9 +10,9 @@
   "SIN_ENVY": "질투",
 
   "ROOM_ABNORMALITY.title": "환상체",
-  "ROOM_ABNORMALITY.description": "이성으로는 설명할 수 없는 존재가 도사리는 방. 조우 시 특수 이벤트가 발생하며, 환상체의 본질에 따라 귀중한 보상이 주어지거나 가혹한 시련이 내려진다.",
+  "ROOM_ABNORMALITY.description": "이 방에는 환상체가 도사리고 있습니다.\n\n환상체와 조우 시 특별한 이벤트가 발생하여 [gold]보상[/gold]을 얻거나 가혹한 시련을 마주하게 됩니다.",
 
   "LEGEND_ABNORMALITY.title": "환상체",
-  "LEGEND_ABNORMALITY.hoverTip.title": "환상체 (Abnormality)",
-  "LEGEND_ABNORMALITY.hoverTip.description": "이 노드에 들어서면 환상체와의 이벤트 조우가 시작된다. 결과는 예측할 수 없으니 신중히 선택하라."
+  "LEGEND_ABNORMALITY.hoverTip.title": "환상체",
+  "LEGEND_ABNORMALITY.hoverTip.description": "이 방에는 환상체가 도사리고 있습니다.\n\n환상체와 조우 시 특별한 이벤트가 발생하여 [gold]보상[/gold]을 얻거나 가혹한 시련을 마주하게 됩니다."
 }
