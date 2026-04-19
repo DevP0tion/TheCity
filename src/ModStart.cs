@@ -24,6 +24,10 @@ public static class ModStart
         Harmony harmony = new(ModId);
         harmony.PatchAll();
 
+        // LocManager는 이미 초기화 완료된 상태 → 현재 언어로 1회 수동 주입.
+        // 이후 언어 변경 시엔 LocTableInjector의 SetLanguageInternal_Patch가 자동 재주입.
+        LocTableInjector.InjectForCurrentLanguage();
+
         // 7대죄 자원 등록
         SinExtensions.RegisterAll();
 
