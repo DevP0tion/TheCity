@@ -35,10 +35,10 @@ public static class SinStackPanel
         { Sin.Wrath,    new Color(0.90f, 0.28f, 0.28f) },  // 빨강
         { Sin.Lust,     new Color(0.95f, 0.55f, 0.18f) },  // 주황
         { Sin.Sloth,    new Color(0.98f, 0.83f, 0.15f) },  // 노랑
-        { Sin.Gluttony, new Color(0.70f, 0.42f, 0.82f) },  // 보라
+        { Sin.Gluttony, new Color(0.22f, 0.78f, 0.45f) },  // 녹색
         { Sin.Gloom,    new Color(0.15f, 0.82f, 0.70f) },  // 청록
         { Sin.Pride,    new Color(0.38f, 0.58f, 0.88f) },  // 남색
-        { Sin.Envy,     new Color(0.22f, 0.78f, 0.45f) },  // 녹색
+        { Sin.Envy,     new Color(0.70f, 0.42f, 0.82f) },  // 보라
     };
 
     private sealed class Row
