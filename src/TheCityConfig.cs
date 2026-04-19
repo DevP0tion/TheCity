@@ -29,7 +29,11 @@ internal class TheCityConfig : SimpleModConfig
     /// 각 후보 Unknown 노드마다 독립 확률로 교체 (0 = 비활성, 100 = 모든 Unknown → 환상체).
     /// 결정론적 해시로 판정하여 멀티플레이어 safe.
     /// </summary>
+    // 설치된 BaseLib 3.0.3에는 [ConfigSlider]가 없고 [SliderRange]만 존재 (미래 분석기가 Obsolete 경고를 내지만 무시).
+    // BaseLib 버전이 올라가면 [ConfigSlider(0, 100)]로 교체.
+#pragma warning disable CS0618
     [ConfigSection("MapSettings")]
-    [ConfigSlider(0, 100)]
+    [SliderRange(0, 100)]
     public static int AbnormalitySpawnChance { get; set; } = 20;
+#pragma warning restore CS0618
 }
