@@ -1,5 +1,5 @@
 {
-  "MOD_NAME": "The City",
+  "MOD_NAME": "The City / 도시",
 
   "SIN_WRATH": "Wrath",
   "SIN_LUST": "Lust",
@@ -10,9 +10,9 @@
   "SIN_ENVY": "Envy",
 
   "ROOM_ABNORMALITY.title": "Abnormality",
-  "ROOM_ABNORMALITY.description": "An anomalous presence. Outcome unknown.",
+  "ROOM_ABNORMALITY.description": "A chamber harboring an entity that reason cannot explain. Entering triggers a special event — each Abnormality may grant a precious reward or impose a harsh trial.",
 
   "LEGEND_ABNORMALITY.title": "Abnormality",
   "LEGEND_ABNORMALITY.hoverTip.title": "Abnormality",
-  "LEGEND_ABNORMALITY.hoverTip.description": "An anomalous presence. Outcome unknown."
+  "LEGEND_ABNORMALITY.hoverTip.description": "Entering this node begins an event encounter with an Abnormality. The outcome cannot be foreseen — choose your approach with care."
 }
