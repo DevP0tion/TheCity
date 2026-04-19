@@ -1,12 +1,9 @@
 {
   "cardId": "BouncingFlask",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Uncommon",
-    "energyCost": "2",
-    "targetType": "RandomEnemy",
-    "keywords": []
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 3,
+  "energyCost": 2,
+  "targetType": 4,
+  "keywords": []
 }

@@ -1,14 +1,11 @@
 {
   "cardId": "Slimed",
-  "sin": "Gluttony",
-  "reason": "",
-  "meta": {
-    "cardType": "Status",
-    "rarity": "Status",
-    "energyCost": "1",
-    "targetType": "None",
-    "keywords": [
-      "Exhaust"
-    ]
-  }
+  "sin": 3,
+  "cardType": 4,
+  "rarity": 8,
+  "energyCost": 1,
+  "targetType": 0,
+  "keywords": [
+    1
+  ]
 }

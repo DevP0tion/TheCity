@@ -1,12 +1,9 @@
 {
   "cardId": "Thunderclap",
-  "sin": "Wrath",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Common",
-    "energyCost": "1",
-    "targetType": "AllEnemies",
-    "keywords": []
-  }
+  "sin": 0,
+  "cardType": 1,
+  "rarity": 2,
+  "energyCost": 1,
+  "targetType": 3,
+  "keywords": []
 }

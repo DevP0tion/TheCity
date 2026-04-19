@@ -1,12 +1,9 @@
 {
   "cardId": "Armaments",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Common",
-    "energyCost": "1",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 2,
+  "energyCost": 1,
+  "targetType": 1,
+  "keywords": []
 }

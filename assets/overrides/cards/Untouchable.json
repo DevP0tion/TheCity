@@ -1,14 +1,11 @@
 {
   "cardId": "Untouchable",
-  "sin": "Lust",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Common",
-    "energyCost": "2",
-    "targetType": "Self",
-    "keywords": [
-      "Sly"
-    ]
-  }
+  "sin": 1,
+  "cardType": 2,
+  "rarity": 2,
+  "energyCost": 2,
+  "targetType": 1,
+  "keywords": [
+    6
+  ]
 }

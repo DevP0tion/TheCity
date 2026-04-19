@@ -1,12 +1,9 @@
 {
   "cardId": "FranticEscape",
-  "sin": "Gluttony",
-  "reason": "",
-  "meta": {
-    "cardType": "Status",
-    "rarity": "Status",
-    "energyCost": "1",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 3,
+  "cardType": 4,
+  "rarity": 8,
+  "energyCost": 1,
+  "targetType": 1,
+  "keywords": []
 }

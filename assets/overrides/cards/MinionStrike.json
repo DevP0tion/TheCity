@@ -1,14 +1,11 @@
 {
   "cardId": "MinionStrike",
-  "sin": "Gloom",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Token",
-    "energyCost": "0",
-    "targetType": "AnyEnemy",
-    "keywords": [
-      "Exhaust"
-    ]
-  }
+  "sin": 4,
+  "cardType": 1,
+  "rarity": 7,
+  "energyCost": 0,
+  "targetType": 2,
+  "keywords": [
+    1
+  ]
 }

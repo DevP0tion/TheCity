@@ -1,12 +1,9 @@
 {
   "cardId": "Disintegration",
-  "sin": "Gluttony",
-  "reason": "",
-  "meta": {
-    "cardType": "Status",
-    "rarity": "Status",
-    "energyCost": "",
-    "targetType": "None",
-    "keywords": []
-  }
+  "sin": 3,
+  "cardType": 4,
+  "rarity": 8,
+  "energyCost": null,
+  "targetType": 0,
+  "keywords": []
 }

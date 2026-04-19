@@ -1,15 +1,12 @@
 {
   "cardId": "Assassinate",
-  "sin": "Gloom",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Rare",
-    "energyCost": "0",
-    "targetType": "AnyEnemy",
-    "keywords": [
-      "Exhaust",
-      "Innate"
-    ]
-  }
+  "sin": 4,
+  "cardType": 1,
+  "rarity": 4,
+  "energyCost": 0,
+  "targetType": 2,
+  "keywords": [
+    1,
+    3
+  ]
 }

@@ -1,14 +1,11 @@
 {
   "cardId": "Enthralled",
-  "sin": "Gloom",
-  "reason": "",
-  "meta": {
-    "cardType": "Curse",
-    "rarity": "Curse",
-    "energyCost": "2",
-    "targetType": "None",
-    "keywords": [
-      "Eternal"
-    ]
-  }
+  "sin": 4,
+  "cardType": 5,
+  "rarity": 9,
+  "energyCost": 2,
+  "targetType": 0,
+  "keywords": [
+    7
+  ]
 }

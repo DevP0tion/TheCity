@@ -1,14 +1,11 @@
 {
   "cardId": "Whistle",
-  "sin": "Gloom",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Ancient",
-    "energyCost": "3",
-    "targetType": "AnyEnemy",
-    "keywords": [
-      "Exhaust"
-    ]
-  }
+  "sin": 4,
+  "cardType": 1,
+  "rarity": 5,
+  "energyCost": 3,
+  "targetType": 2,
+  "keywords": [
+    1
+  ]
 }

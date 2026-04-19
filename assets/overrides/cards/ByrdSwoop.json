@@ -1,12 +1,9 @@
 {
   "cardId": "ByrdSwoop",
-  "sin": "Wrath",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Event",
-    "energyCost": "0",
-    "targetType": "AnyEnemy",
-    "keywords": []
-  }
+  "sin": 0,
+  "cardType": 1,
+  "rarity": 6,
+  "energyCost": 0,
+  "targetType": 2,
+  "keywords": []
 }

@@ -1,14 +1,11 @@
 {
   "cardId": "Tactician",
-  "sin": "Lust",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Uncommon",
-    "energyCost": "3",
-    "targetType": "Self",
-    "keywords": [
-      "Sly"
-    ]
-  }
+  "sin": 1,
+  "cardType": 2,
+  "rarity": 3,
+  "energyCost": 3,
+  "targetType": 1,
+  "keywords": [
+    6
+  ]
 }

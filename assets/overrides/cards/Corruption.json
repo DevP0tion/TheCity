@@ -1,12 +1,9 @@
 {
   "cardId": "Corruption",
-  "sin": "Pride",
-  "reason": "",
-  "meta": {
-    "cardType": "Power",
-    "rarity": "Ancient",
-    "energyCost": "3",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 5,
+  "cardType": 3,
+  "rarity": 5,
+  "energyCost": 3,
+  "targetType": 1,
+  "keywords": []
 }

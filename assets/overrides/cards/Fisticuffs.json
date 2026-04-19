@@ -1,12 +1,9 @@
 {
   "cardId": "Fisticuffs",
-  "sin": "Wrath",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Uncommon",
-    "energyCost": "1",
-    "targetType": "AnyEnemy",
-    "keywords": []
-  }
+  "sin": 0,
+  "cardType": 1,
+  "rarity": 3,
+  "energyCost": 1,
+  "targetType": 2,
+  "keywords": []
 }

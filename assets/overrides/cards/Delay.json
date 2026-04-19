@@ -1,12 +1,9 @@
 {
   "cardId": "Delay",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Uncommon",
-    "energyCost": "2",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 3,
+  "energyCost": 2,
+  "targetType": 1,
+  "keywords": []
 }

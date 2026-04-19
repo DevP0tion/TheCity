@@ -1,12 +1,9 @@
 {
   "cardId": "Outmaneuver",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Event",
-    "energyCost": "1",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 6,
+  "energyCost": 1,
+  "targetType": 1,
+  "keywords": []
 }

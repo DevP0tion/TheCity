@@ -1,12 +1,9 @@
 {
   "cardId": "Cascade",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Rare",
-    "energyCost": "",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 4,
+  "energyCost": null,
+  "targetType": 1,
+  "keywords": []
 }

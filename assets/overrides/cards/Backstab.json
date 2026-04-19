@@ -1,15 +1,12 @@
 {
   "cardId": "Backstab",
-  "sin": "Gloom",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Uncommon",
-    "energyCost": "0",
-    "targetType": "AnyEnemy",
-    "keywords": [
-      "Exhaust",
-      "Innate"
-    ]
-  }
+  "sin": 4,
+  "cardType": 1,
+  "rarity": 3,
+  "energyCost": 0,
+  "targetType": 2,
+  "keywords": [
+    1,
+    3
+  ]
 }

@@ -6,7 +6,7 @@
         <ImplicitUsings>true</ImplicitUsings>
         <Nullable>enable</Nullable> <!--Makes code analysis regarding null values stricter.-->
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <DefaultItemExcludes>packages/**</DefaultItemExcludes>
+        <DefaultItemExcludes>packages/**;tools/**</DefaultItemExcludes>
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
         <PathMap>$(AppOutputBase)=.\</PathMap>
     </PropertyGroup>
@@ -64,6 +64,34 @@
         <Error
                 Text=" Slay the Spire 2 data not found at path '$(Sts2DataDir)'"
                 Condition="'$(Sts2DataDir)' == '' or !Exists('$(Sts2DataDir)')" />
+    </Target>
+
+    <!-- ── Card-Sin Override JSON → Generated C# Map ────────────────────────
+         assets/overrides/cards/*.json 을 빌드 시 파싱하여
+         Generated/CardSinMap.g.cs (Dictionary<string, Sin>) 로 변환.
+         두 단계 분리 — 도구 재빌드는 드물게, 데이터 변경은 자주.
+    -->
+    <ItemGroup>
+        <CardOverrideFile Include="assets/overrides/cards/*.json" />
+    </ItemGroup>
+
+    <Target Name="BuildCardSinMapTool"
+            Inputs="tools/CardSinMapGen/Program.cs;tools/CardSinMapGen/CardSinMapGen.csproj"
+            Outputs="tools/CardSinMapGen/bin/Release/net9.0/CardSinMapGen.dll">
+        <Message Text="Building CardSinMapGen tool..." Importance="high" />
+        <Exec Command="dotnet build tools/CardSinMapGen -c Release --nologo"
+              WorkingDirectory="$(MSBuildProjectDirectory)" />
+    </Target>
+
+    <Target Name="GenerateCardSinMap"
+            BeforeTargets="BeforeCompile;CoreCompile"
+            DependsOnTargets="BuildCardSinMapTool"
+            Inputs="@(CardOverrideFile);tools/CardSinMapGen/bin/Release/net9.0/CardSinMapGen.dll"
+            Outputs="Generated/CardSinMap.g.cs">
+        <Message Text="Regenerating CardSinMap.g.cs from @(CardOverrideFile->Count()) JSON files..."
+                 Importance="high" />
+        <Exec Command="dotnet tools/CardSinMapGen/bin/Release/net9.0/CardSinMapGen.dll &quot;$(MSBuildProjectDirectory)/assets/overrides/cards&quot; &quot;$(MSBuildProjectDirectory)/Generated/CardSinMap.g.cs&quot;"
+              WorkingDirectory="$(MSBuildProjectDirectory)" />
     </Target>
 
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">

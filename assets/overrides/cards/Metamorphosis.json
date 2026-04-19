@@ -1,14 +1,11 @@
 {
   "cardId": "Metamorphosis",
-  "sin": "Gloom",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Event",
-    "energyCost": "2",
-    "targetType": "Self",
-    "keywords": [
-      "Exhaust"
-    ]
-  }
+  "sin": 4,
+  "cardType": 2,
+  "rarity": 6,
+  "energyCost": 2,
+  "targetType": 1,
+  "keywords": [
+    1
+  ]
 }

@@ -1,12 +1,9 @@
 {
   "cardId": "Mangle",
-  "sin": "Wrath",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Rare",
-    "energyCost": "3",
-    "targetType": "AnyEnemy",
-    "keywords": []
-  }
+  "sin": 0,
+  "cardType": 1,
+  "rarity": 4,
+  "energyCost": 3,
+  "targetType": 2,
+  "keywords": []
 }

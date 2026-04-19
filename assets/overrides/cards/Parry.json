@@ -1,12 +1,9 @@
 {
   "cardId": "Parry",
-  "sin": "Pride",
-  "reason": "",
-  "meta": {
-    "cardType": "Power",
-    "rarity": "Uncommon",
-    "energyCost": "1",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 5,
+  "cardType": 3,
+  "rarity": 3,
+  "energyCost": 1,
+  "targetType": 1,
+  "keywords": []
 }

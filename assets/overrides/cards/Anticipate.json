@@ -1,12 +1,9 @@
 {
   "cardId": "Anticipate",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Common",
-    "energyCost": "0",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 2,
+  "energyCost": 0,
+  "targetType": 1,
+  "keywords": []
 }

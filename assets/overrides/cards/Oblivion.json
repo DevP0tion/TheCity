@@ -1,12 +1,9 @@
 {
   "cardId": "Oblivion",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Rare",
-    "energyCost": "0",
-    "targetType": "AnyEnemy",
-    "keywords": []
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 4,
+  "energyCost": 0,
+  "targetType": 2,
+  "keywords": []
 }

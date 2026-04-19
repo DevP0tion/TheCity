@@ -1,14 +1,11 @@
 {
   "cardId": "Haze",
-  "sin": "Lust",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Uncommon",
-    "energyCost": "3",
-    "targetType": "AllEnemies",
-    "keywords": [
-      "Sly"
-    ]
-  }
+  "sin": 1,
+  "cardType": 2,
+  "rarity": 3,
+  "energyCost": 3,
+  "targetType": 3,
+  "keywords": [
+    6
+  ]
 }

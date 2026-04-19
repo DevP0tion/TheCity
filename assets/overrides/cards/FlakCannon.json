@@ -1,12 +1,9 @@
 {
   "cardId": "FlakCannon",
-  "sin": "Wrath",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Rare",
-    "energyCost": "2",
-    "targetType": "RandomEnemy",
-    "keywords": []
-  }
+  "sin": 0,
+  "cardType": 1,
+  "rarity": 4,
+  "energyCost": 2,
+  "targetType": 4,
+  "keywords": []
 }

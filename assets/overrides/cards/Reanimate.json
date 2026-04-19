@@ -1,14 +1,11 @@
 {
   "cardId": "Reanimate",
-  "sin": "Gloom",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Rare",
-    "energyCost": "3",
-    "targetType": "Self",
-    "keywords": [
-      "Exhaust"
-    ]
-  }
+  "sin": 4,
+  "cardType": 2,
+  "rarity": 4,
+  "energyCost": 3,
+  "targetType": 1,
+  "keywords": [
+    1
+  ]
 }

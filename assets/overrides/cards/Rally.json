@@ -1,12 +1,9 @@
 {
   "cardId": "Rally",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Rare",
-    "energyCost": "2",
-    "targetType": "AllAllies",
-    "keywords": []
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 4,
+  "energyCost": 2,
+  "targetType": 7,
+  "keywords": []
 }

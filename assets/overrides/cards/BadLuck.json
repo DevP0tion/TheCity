@@ -1,15 +1,12 @@
 {
   "cardId": "BadLuck",
-  "sin": "Gloom",
-  "reason": "",
-  "meta": {
-    "cardType": "Curse",
-    "rarity": "Curse",
-    "energyCost": "",
-    "targetType": "None",
-    "keywords": [
-      "Eternal",
-      "Unplayable"
-    ]
-  }
+  "sin": 4,
+  "cardType": 5,
+  "rarity": 9,
+  "energyCost": null,
+  "targetType": 0,
+  "keywords": [
+    7,
+    4
+  ]
 }

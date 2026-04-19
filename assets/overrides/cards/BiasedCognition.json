@@ -1,12 +1,9 @@
 {
   "cardId": "BiasedCognition",
-  "sin": "Pride",
-  "reason": "",
-  "meta": {
-    "cardType": "Power",
-    "rarity": "Ancient",
-    "energyCost": "1",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 5,
+  "cardType": 3,
+  "rarity": 5,
+  "energyCost": 1,
+  "targetType": 1,
+  "keywords": []
 }

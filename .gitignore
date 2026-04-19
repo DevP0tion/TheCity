@@ -24,3 +24,10 @@ build.bat
 
 # bkit runtime state
 .bkit/
+
+# tools/CardSinMapGen 빌드 산출물은 bin/obj 규칙에 이미 해당됨.
+# Generated/CardSinMap.g.cs 는 git에 포함 (IDE IntelliSense + 클린 클론 지원).
+# 재현성은 입력 JSON + tools/ 코드로 담보, .g.cs는 빌드마다 덮어씀(내용 동일하면 skip).
+
+# 임시 작업 폴더
+.tmp/

@@ -1,12 +1,9 @@
 {
   "cardId": "EchoingSlash",
-  "sin": "Wrath",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Rare",
-    "energyCost": "1",
-    "targetType": "AllEnemies",
-    "keywords": []
-  }
+  "sin": 0,
+  "cardType": 1,
+  "rarity": 4,
+  "energyCost": 1,
+  "targetType": 3,
+  "keywords": []
 }

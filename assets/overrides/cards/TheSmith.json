@@ -1,12 +1,9 @@
 {
   "cardId": "TheSmith",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Rare",
-    "energyCost": "1",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 4,
+  "energyCost": 1,
+  "targetType": 1,
+  "keywords": []
 }

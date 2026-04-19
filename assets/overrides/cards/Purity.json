@@ -1,15 +1,12 @@
 {
   "cardId": "Purity",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Uncommon",
-    "energyCost": "0",
-    "targetType": "Self",
-    "keywords": [
-      "Exhaust",
-      "Retain"
-    ]
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 3,
+  "energyCost": 0,
+  "targetType": 1,
+  "keywords": [
+    1,
+    5
+  ]
 }

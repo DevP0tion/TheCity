@@ -1,12 +1,9 @@
 {
   "cardId": "Poke",
-  "sin": "Wrath",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Common",
-    "energyCost": "0",
-    "targetType": "AnyEnemy",
-    "keywords": []
-  }
+  "sin": 0,
+  "cardType": 1,
+  "rarity": 2,
+  "energyCost": 0,
+  "targetType": 2,
+  "keywords": []
 }

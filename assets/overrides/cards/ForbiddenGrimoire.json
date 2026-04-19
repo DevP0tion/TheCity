@@ -1,14 +1,11 @@
 {
   "cardId": "ForbiddenGrimoire",
-  "sin": "Pride",
-  "reason": "",
-  "meta": {
-    "cardType": "Power",
-    "rarity": "Ancient",
-    "energyCost": "2",
-    "targetType": "Self",
-    "keywords": [
-      "Eternal"
-    ]
-  }
+  "sin": 5,
+  "cardType": 3,
+  "rarity": 5,
+  "energyCost": 2,
+  "targetType": 1,
+  "keywords": [
+    7
+  ]
 }

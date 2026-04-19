@@ -1,12 +1,9 @@
 {
   "cardId": "Feral",
-  "sin": "Pride",
-  "reason": "",
-  "meta": {
-    "cardType": "Power",
-    "rarity": "Uncommon",
-    "energyCost": "2",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 5,
+  "cardType": 3,
+  "rarity": 3,
+  "energyCost": 2,
+  "targetType": 1,
+  "keywords": []
 }

@@ -1,14 +1,11 @@
 {
   "cardId": "Snakebite",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Common",
-    "energyCost": "2",
-    "targetType": "AnyEnemy",
-    "keywords": [
-      "Retain"
-    ]
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 2,
+  "energyCost": 2,
+  "targetType": 2,
+  "keywords": [
+    5
+  ]
 }

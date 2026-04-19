@@ -1,12 +1,9 @@
 {
   "cardId": "Resonance",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Uncommon",
-    "energyCost": "1",
-    "targetType": "AllEnemies",
-    "keywords": []
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 3,
+  "energyCost": 1,
+  "targetType": 3,
+  "keywords": []
 }

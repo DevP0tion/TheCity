@@ -1,14 +1,11 @@
 {
   "cardId": "Eradicate",
-  "sin": "Wrath",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Rare",
-    "energyCost": "0",
-    "targetType": "AnyEnemy",
-    "keywords": [
-      "Retain"
-    ]
-  }
+  "sin": 0,
+  "cardType": 1,
+  "rarity": 4,
+  "energyCost": 0,
+  "targetType": 2,
+  "keywords": [
+    5
+  ]
 }

@@ -1,14 +1,11 @@
 {
   "cardId": "EnfeeblingTouch",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Uncommon",
-    "energyCost": "1",
-    "targetType": "AnyEnemy",
-    "keywords": [
-      "Ethereal"
-    ]
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 3,
+  "energyCost": 1,
+  "targetType": 2,
+  "keywords": [
+    2
+  ]
 }

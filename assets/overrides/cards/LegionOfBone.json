@@ -1,14 +1,11 @@
 {
   "cardId": "LegionOfBone",
-  "sin": "Gloom",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Uncommon",
-    "energyCost": "2",
-    "targetType": "AllAllies",
-    "keywords": [
-      "Exhaust"
-    ]
-  }
+  "sin": 4,
+  "cardType": 2,
+  "rarity": 3,
+  "energyCost": 2,
+  "targetType": 7,
+  "keywords": [
+    1
+  ]
 }

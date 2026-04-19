@@ -1,12 +1,9 @@
 {
   "cardId": "Whirlwind",
-  "sin": "Wrath",
-  "reason": "",
-  "meta": {
-    "cardType": "Attack",
-    "rarity": "Uncommon",
-    "energyCost": "0",
-    "targetType": "AllEnemies",
-    "keywords": []
-  }
+  "sin": 0,
+  "cardType": 1,
+  "rarity": 3,
+  "energyCost": 0,
+  "targetType": 3,
+  "keywords": []
 }

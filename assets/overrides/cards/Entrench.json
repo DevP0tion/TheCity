@@ -1,12 +1,9 @@
 {
   "cardId": "Entrench",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Event",
-    "energyCost": "2",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 6,
+  "energyCost": 2,
+  "targetType": 1,
+  "keywords": []
 }

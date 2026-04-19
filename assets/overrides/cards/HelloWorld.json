@@ -1,12 +1,9 @@
 {
   "cardId": "HelloWorld",
-  "sin": "Pride",
-  "reason": "",
-  "meta": {
-    "cardType": "Power",
-    "rarity": "Event",
-    "energyCost": "1",
-    "targetType": "Self",
-    "keywords": []
-  }
+  "sin": 5,
+  "cardType": 3,
+  "rarity": 6,
+  "energyCost": 1,
+  "targetType": 1,
+  "keywords": []
 }

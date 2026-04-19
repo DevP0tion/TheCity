@@ -1,12 +1,9 @@
 {
   "cardId": "LegSweep",
-  "sin": "Sloth",
-  "reason": "",
-  "meta": {
-    "cardType": "Skill",
-    "rarity": "Uncommon",
-    "energyCost": "2",
-    "targetType": "AnyEnemy",
-    "keywords": []
-  }
+  "sin": 2,
+  "cardType": 2,
+  "rarity": 3,
+  "energyCost": 2,
+  "targetType": 2,
+  "keywords": []
 }
