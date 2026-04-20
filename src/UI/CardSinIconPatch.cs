@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Entities.UI;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using TheCity.Resource;
 
@@ -36,9 +37,9 @@ public static class CardSinIconPatch
 
         var existing = body.GetNodeOrNull<TextureRect>(IconNodeName);
 
-        if (sin == null)
+        // Sin 미등록 또는 카드 면이 가려진 상태(Hidden/Locked)에서는 아이콘 숨김
+        if (sin == null || __instance.Visibility != ModelVisibility.Visible)
         {
-            // Sin 없으면 아이콘 숨기기
             if (existing != null) existing.Visible = false;
             return;
         }
@@ -63,6 +64,7 @@ public static class CardSinIconPatch
                 ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
                 MouseFilter = Control.MouseFilterEnum.Ignore,
+                ZIndex = 10,
             };
             body.AddChild(icon);
         }
