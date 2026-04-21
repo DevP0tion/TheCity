@@ -15,9 +15,8 @@ namespace TheCity.UI;
 public static class CardSinIconPatch
 {
     private const string IconNodeName = "SinIcon";
-    private const float IconSize = 36f;
-    private const float MarginRight = 12f;
-    private const float MarginTop = 12f;
+    private const float IconSize = 72f;
+    private const float RelativeMargin = 0.1f;
 
     private static readonly Dictionary<Sin, Texture2D?> _textureCache = new();
 
@@ -66,8 +65,8 @@ public static class CardSinIconPatch
         icon.Size = new Vector2(IconSize, IconSize);
         var cardSize = NCard.defaultSize;
         icon.Position = new Vector2(
-            cardSize.X / 2f - IconSize - MarginRight,
-            -cardSize.Y / 2f + MarginTop
+            cardSize.X / 2f - IconSize - cardSize.X * RelativeMargin,
+            -cardSize.Y / 2f + cardSize.Y * RelativeMargin
         );
         icon.Visible = true;
     }
