@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Godot;
 using MegaCrit.Sts2.Core.Models;
 
@@ -8,20 +9,35 @@ namespace TheCity.Resource;
 /// 런타임 카드 → Sin 조회. <see cref="CardSinMap"/>(빌드 시 자동 생성)에서 데이터를
 /// 소유권 이전(<see cref="CardSinMap.TakeOwnership"/>) 방식으로 받아옴.
 ///
-/// 이전 후 CardSinMap의 정적 필드는 null이 되고, 이 레지스트리만이 Dictionary를 참조.
-/// 캐시/인덱스 같은 추가 구조는 이 파일에서 관리 (CardSinMap.g.cs는 순수 데이터 vehicle).
+/// JSON의 PascalCase ID를 게임의 UPPER_SNAKE_CASE(ModelId.Entry)로 변환하여 저장.
 /// </summary>
 public static class CardSinRegistry
 {
     private static Dictionary<string, Sin>? _byCardId;
 
+    // StringHelper.Slugify 복제: PascalCase → UPPER_SNAKE_CASE
+    private static readonly Regex CamelCaseRx = new(@"([A-Za-z0-9]|\G(?!^))([A-Z])", RegexOptions.Compiled);
+    private static readonly Regex SpecialCharRx = new(@"[^A-Z0-9_]", RegexOptions.Compiled);
+
+    private static string Slugify(string txt)
+    {
+        var s = CamelCaseRx.Replace(txt.Trim(), "$1_$2");
+        return SpecialCharRx.Replace(s.ToUpperInvariant().Replace(" ", "_"), "");
+    }
+
     /// <summary>ModInit에서 1회 호출. CardSinMap 데이터를 흡수하고 원본을 해제.</summary>
     public static void LoadOnce()
     {
-        if (_byCardId != null) return;  // 이미 로드됨
-        if (CardSinMap.IsReleased) return;  // 이미 다른 경로로 해제됨
+        if (_byCardId != null) return;
+        if (CardSinMap.IsReleased) return;
 
-        _byCardId = CardSinMap.TakeOwnership();
+        var raw = CardSinMap.TakeOwnership();
+        // PascalCase → UPPER_SNAKE_CASE 변환
+        _byCardId = new Dictionary<string, Sin>(raw.Count);
+        foreach (var kvp in raw)
+        {
+            _byCardId[Slugify(kvp.Key)] = kvp.Value;
+        }
         GD.Print($"[{ModStart.ModId}] CardSinRegistry: {_byCardId.Count} entries loaded; CardSinMap released.");
     }
 
