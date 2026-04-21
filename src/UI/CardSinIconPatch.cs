@@ -58,7 +58,6 @@ public static class CardSinIconPatch
                 ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
                 MouseFilter = Control.MouseFilterEnum.Ignore,
-                ZIndex = 10,
             };
             body.AddChild(icon);
         }
