@@ -65,9 +65,12 @@ public static class CardSinIconPatch
 
         icon.Texture = texture;
         icon.Size = new Vector2(IconSize, IconSize);
+        // CardContainer는 중앙 피벗(0,0), Frame은 (-150,-211)에 위치
+        float cardLeft = -NCard.defaultSize.X / 2f;   // -150
+        float cardTop  = -NCard.defaultSize.Y / 2f;   // -211
         icon.Position = new Vector2(
-            NCard.defaultSize.X - IconSize - MarginRight,
-            MarginTop
+            cardLeft + NCard.defaultSize.X - IconSize - MarginRight,  // 102
+            cardTop + MarginTop                                        // -199
         );
         icon.Visible = true;
     }
