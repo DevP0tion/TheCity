@@ -71,6 +71,26 @@ Patterns that are easy to get wrong (see `doc/multiplayer-networking.md` for ful
 ### Logging
 Always prefix with `[{ModStart.ModId}]`: `GD.Print($"[{ModStart.ModId}] message")`. Uses Godot's `GD.Print`, not `Console.WriteLine`.
 
+## Agent Team Spawning — MANDATORY
+
+**이 프로젝트는 Agent Team 워크플로를 전제로 설계됐다. `.claude/agents/` 에 6개 에이전트 (cto-lead, sts-game-analyst, mod-code-analyst, mod-implementer, runtime-qa, web-researcher) 가 정의되어 있다. 이 에이전트들을 호출할 때 반드시 아래 규칙을 따른다.**
+
+### RULE-1: Teammate 우선, sub-agent 금지
+`.claude/agents/` 정의 에이전트를 호출할 때는 `TeamCreate` 로 팀을 먼저 만들고 `Agent(team_name=..., name=..., prompt="팀 합류 확인")` 로 Teammate 스폰. 그냥 `Agent(subagent_type=..., prompt="<긴 지시>")` 형태 단발 호출은 **금지** — sub-agent로 동작해 SendMessage/공유 TaskList/idle 재사용이 불가능해진다.
+
+**예외:** 100% 단발 read-only 조사 1회성 (후속 작업 없음 확정) 인 경우에 한해 sub-agent 허용. 조금이라도 멀티스텝/후속 구현 가능성이 있으면 Teammate.
+
+### RULE-2: Agent prompt 최소화
+Teammate 스폰 시 `Agent` 의 `prompt` 필드는 한 문장 이내 ("팀 합류 확인" 수준). 실제 작업 지시는 스폰 직후 `SendMessage(to: name, ...)` 로 별도 전달. prompt 에 지시가 들어가면 Claude Code 가 sub-agent 모드로 전환해 팀 기능을 못 쓴다 (`teammate-spawn` SKILL.md 확인).
+
+### RULE-3: cto-lead 위임 원칙
+복합 피처 (조사 + 구현 + QA) 는 cto-lead 에 위임. 직접 하위 에이전트에 작업을 찔러넣지 말고 cto-lead 가 오케스트레이션하도록 둔다.
+
+### RULE-4: 기존 팀 재사용
+같은 세션에서 동일 에이전트가 필요하면 새로 `Agent` 호출하지 말고 `SendMessage(to: <기존이름>, ...)` 로 재지시. 새 Agent 호출은 컨텍스트 없는 신규 팀원을 만들어 토큰/시간 낭비.
+
+---
+
 ## STS2 Modding MCP
 
 This repo has `.mcp.json` configured for the local STS2 Modding MCP server (~150 tools). When working on game integration — hook signatures, entity lookup, patch scaffolding, game code search — prefer MCP tools over guessing:
