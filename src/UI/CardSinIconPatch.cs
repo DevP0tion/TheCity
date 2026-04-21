@@ -15,8 +15,8 @@ namespace TheCity.UI;
 public static class CardSinIconPatch
 {
     private const string IconNodeName = "SinIcon";
-    private const float IconSize = 72f;
-    private const float RelativeMargin = 0.1f;
+    private const float IconSize = 54f;
+    private const float RelativeMargin = -0.05f;
 
     private static readonly Dictionary<Sin, Texture2D?> _textureCache = new();
 
