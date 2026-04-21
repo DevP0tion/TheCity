@@ -3,8 +3,8 @@
 **Feature:** card-sin-attribution
 **상태:** Plan 작성 (Do 일부 진행 중 — 스키마 + 생성기 + Hook 구현 완료)
 **작성:** 2026-04-20
-**입력:** `doc/plan/card-sin-attribution-brainstorm.md` (4팀 병렬 리서치 통합)
-**인코딩 레퍼런스:** `doc/plan/card-sin-attribution-encoding.md`
+**입력:** 4팀 병렬 리서치 (researcher / designer / architect / balancer) → 부록 A 요약
+**인코딩 레퍼런스:** 부록 B
 
 ## Executive Summary
 
@@ -217,9 +217,9 @@ public static void Postfix(CardPlay cardPlay)
 
 사용자의 단계별 요구에 따라 다음이 Plan 확정 전에 선행됨:
 
-- [x] 4-teammate 브레인스토밍 (`card-sin-attribution-brainstorm.md`)
+- [x] 4-teammate 브레인스토밍 (→ 부록 A)
 - [x] 577 JSON 파일 스캐폴드 (숫자 인코딩 스키마)
-- [x] 인코딩 레퍼런스 문서 (`card-sin-attribution-encoding.md`)
+- [x] 인코딩 레퍼런스 (→ 부록 B)
 - [x] `tools/CardSinMapGen/` C# 빌드 도구
 - [x] `Generated/CardSinMap.g.cs` 자동 생성 파이프라인
 - [x] `src/Resource/CardSinRegistry.cs` 런타임 레지스트리 (소유권 이전)
@@ -255,8 +255,8 @@ public static void Postfix(CardPlay cardPlay)
 
 ## 12. 참고 자료
 
-- **브레인스토밍**: `doc/plan/card-sin-attribution-brainstorm.md` — 4팀 원본 리포트 + 3가지 통합 설계안
-- **인코딩 레퍼런스**: `doc/plan/card-sin-attribution-encoding.md` — enum ↔ int 매핑표
+- **브레인스토밍 요약**: 부록 A
+- **인코딩 레퍼런스**: 부록 B
 - **관련 설계 (이전 피처)**: `doc/plan/abnormality-map-node.md` (Map 피처)
 - **게임 소스**:
   - `Hook.AfterCardPlayed` — `MegaCrit.Sts2.Core.Hooks.Hook:181`
@@ -266,3 +266,154 @@ public static void Postfix(CardPlay cardPlay)
 ---
 
 *이 Plan은 /pdca plan으로 작성되었으나, 브레인스토밍 + Do 선행 작업이 이미 진행됐으므로 Plan-Do가 일부 중첩. Check 단계로 진입 시 gap-detector가 이 문서 §3 SC 기준으로 구현을 검증.*
+
+---
+
+## 부록 A — 브레인스토밍 요약
+
+> 2026-04-19 team-lead 통합. researcher / designer / architect / balancer 4개 병렬 리포트.
+> 원본: `card-sin-attribution-brainstorm.md` (2026-04-21 이 문서에 흡수·삭제).
+
+### A.1 4팀 공통 기반
+
+| 항목 | 확정 사항 |
+|------|----------|
+| 플레이 훅 | `Hook.AfterCardPlayed(CombatState, PlayerChoiceContext, CardPlay)` (`Hook.cs:181`) |
+| 패치 방식 | Harmony Postfix |
+| 매핑 키 | `CardModel.Id.Entry` (ModelId record) — 업그레이드/인챈트에 불변 |
+| 저장소 | 정적 `Dictionary<string, Sin>` (코드 상수, 세이브 불필요) |
+| MP safety | 매핑은 코드 상수 → peer 자동 일치. 값 동기화는 `SharedResourceManager.Modify(sync:true)` |
+
+### A.2 7대죄 컨셉 가이드 (designer)
+
+| Sin | 키워드 | 대표 카드 |
+|-----|--------|----------|
+| 분노 (Wrath) | 순수 공격, 고코스트 일격 | Strike, Bludgeon, Headbutt |
+| 색욕 (Lust) | 사이클/유혹/충동 돌진 | Anger, Reckless Charge |
+| 나태 (Sloth) | 방어, 지속성, 느림 | Defend, Shrug It Off |
+| 탐식 (Gluttony) | 카드 축적/획득/소모 | Hoarder, Feed, Warcry |
+| 우울 (Gloom) | 자해/희생/소진 | Reaper, Offering |
+| 오만 (Pride) | 파워/버프/권위 | Demon Form, Inflame |
+| 질투 (Envy) | 모방/탈취/복제 | Mirror Image, 적 스킬 복사 |
+
+### A.3 고려된 3개 옵션
+
+| 축 | Option 1 (규칙 자동) | **Option 2 하이브리드** ⭐ | Option 3 (완전 수동) |
+|----|:---:|:---:|:---:|
+| 초기 공수 | S (1-2일) | M (2-4일) | L (3-5일) |
+| 테마 정확도 | 60% | 85% | 95%+ |
+| DLC 자동 대응 | ✅ | ✅ | ❌ |
+| 유지 부담 | 중 | 저 | 고 |
+| 확장성 | 낮음 | 높음 (Sin 벡터로 승격) | 낮음 |
+
+### A.4 Option 2 선택 이유
+
+1. **4팀 수렴**: designer S3, architect A1+A3, researcher 모두 동일 방향.
+2. **리스크 균형**: Option 1 "어색함" + Option 3 "누락 공포" 양쪽 회피.
+3. **점진 품질**: 규칙 80% + Override로 v1 출시 → Override 늘려 정확도 상승.
+4. **DLC 안전망**: 신규 카드는 규칙 fallback, 수동 검토만 Override.
+5. **확장성**: 추후 Sin 가중치 벡터(복수 Sin 카드)로 자연 승격.
+
+> 실제 구현은 "JSON per card + 생성기" 변형으로 진화 (brainstorm 시점의 C# Override → 빌드 시 JSON 파싱). 아키텍처 결정은 §4.1 참조.
+
+---
+
+## 부록 B — JSON 인코딩 레퍼런스
+
+> `assets/overrides/cards/*.json`의 모든 필드(단 `cardId` 제외)는 숫자 인코딩.
+> 게임 소스의 enum ordinal을 그대로 사용 → 게임 API 직접 호환.
+> 원본: `card-sin-attribution-encoding.md` (2026-04-21 이 문서에 흡수·삭제).
+
+### B.1 Sin (`sin`) — `src/Resource/Sin.cs`
+
+| 값 | Sin | 한국어 |
+|:--:|-----|--------|
+| 0 | Wrath | 분노 |
+| 1 | Lust | 색욕 |
+| 2 | Sloth | 나태 |
+| 3 | Gluttony | 탐식 |
+| 4 | Gloom | 우울 |
+| 5 | Pride | 오만 |
+| 6 | Envy | 질투 |
+
+`sin` 필드가 누락/null이면 빌드 시 `FNV-1a(cardId) % 7` 결정론적 할당.
+
+### B.2 CardType (`cardType`)
+
+| 값 | 이름 |
+|:--:|------|
+| 0 | None |
+| 1 | Attack |
+| 2 | Skill |
+| 3 | Power |
+| 4 | Status |
+| 5 | Curse |
+| 6 | Quest |
+
+### B.3 CardRarity (`rarity`)
+
+| 값 | 이름 |
+|:--:|------|
+| 0 | None |
+| 1 | Basic |
+| 2 | Common |
+| 3 | Uncommon |
+| 4 | Rare |
+| 5 | Ancient |
+| 6 | Event |
+| 7 | Token |
+| 8 | Status |
+| 9 | Curse |
+| 10 | Quest |
+
+### B.4 TargetType (`targetType`)
+
+| 값 | 이름 |
+|:--:|------|
+| 0 | None |
+| 1 | Self |
+| 2 | AnyEnemy |
+| 3 | AllEnemies |
+| 4 | RandomEnemy |
+| 5 | AnyPlayer |
+| 6 | AnyAlly |
+| 7 | AllAllies |
+| 8 | TargetedNoCreature |
+| 9 | Osty |
+
+### B.5 CardKeyword (`keywords[]`)
+
+| 값 | 이름 |
+|:--:|------|
+| 0 | None |
+| 1 | Exhaust |
+| 2 | Ethereal |
+| 3 | Innate |
+| 4 | Unplayable |
+| 5 | Retain |
+| 6 | Sly |
+| 7 | Eternal |
+
+### B.6 `energyCost`
+
+숫자(int). `null`은 가변 X 코스트 또는 해당 없음(Status/Curse/Quest 일부).
+
+### B.7 파일 예시
+
+```json
+// Bash (기본 공격)
+{ "cardId": "Bash", "sin": 0, "cardType": 1, "rarity": 1, "energyCost": 2, "targetType": 2, "keywords": [] }
+
+// AscendersBane (저주)
+{ "cardId": "AscendersBane", "sin": 4, "cardType": 5, "rarity": 9, "energyCost": null, "targetType": 0, "keywords": [7, 2, 4] }
+
+// Whirlwind (X 코스트)
+{ "cardId": "Whirlwind", "sin": 0, "cardType": 1, "rarity": 3, "energyCost": null, "targetType": 3, "keywords": [] }
+```
+
+### B.8 편집 워크플로
+
+1. `assets/overrides/cards/{CardName}.json` 열기
+2. 위 매핑 테이블 참조하여 필드 수정 (예: `"sin": 2` = Sloth)
+3. `dotnet build` → `Generated/CardSinMap.g.cs` 자동 재생성
+4. 런타임 조회: `CardSinRegistry.GetSin(modelId)` (소유권 이전 후)
