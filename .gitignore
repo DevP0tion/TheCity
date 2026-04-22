@@ -20,8 +20,9 @@ output/
 build.bat
 
 # Claude Code worktrees & session state
-.claude/
-# 단, 에이전트 정의와 스킬은 레포에 포함
+# `.claude/` 를 통째로 ignore 하면 Git 이 디렉토리 자체를 안 뒤져서 하위 `!` 규칙이 무효.
+# 직속 자식만 ignore 하고 agents/, skills/ 는 화이트리스트로 복원.
+.claude/*
 !.claude/agents/
 !.claude/agents/**
 !.claude/skills/
