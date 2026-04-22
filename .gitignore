@@ -21,6 +21,11 @@ build.bat
 
 # Claude Code worktrees & session state
 .claude/
+# 단, 에이전트 정의와 스킬은 레포에 포함
+!.claude/agents/
+!.claude/agents/**
+!.claude/skills/
+!.claude/skills/**
 
 # bkit runtime state
 .bkit/
