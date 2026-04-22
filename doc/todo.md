@@ -2,6 +2,21 @@
 
 ## 우선순위 높음
 
+### abnormality-battle — M1 런타임 실측 필요
+Q4 훅 존재·시그니처 검증 완료 (verification.md §5.5). M1 은 M1-1~M1-7 + R2/R4 만 남음.
+
+- [ ] M1-1: BaseLib `CustomEncounterModel` 존재·사용 방식
+- [ ] M1-2: Slugify 실측 (샘플 EncounterModel.Id.Entry 값 확인)
+- [ ] M1-3: `res://scenes/backgrounds/` 자산 복사·import 파이프라인
+- [ ] M1-4: `Hook.ShouldStopCombatFromEnding` 시그니처 (다부위 전투 종료 조건 재검증)
+- [ ] M1-5: `MinionPower` 적용 API (`CombatCmd.ApplyPower` / `PowerModifier` 어느 쪽)
+- [ ] M1-6: `EnterCombatWithoutExitingEvent` reward 빈 배열 시 보상 UI 동작
+- [ ] M1-7: 이벤트 ID prefix 규약 (ABNORMALITY_* 충돌 테스트)
+
+### abnormality-battle — 런타임 QA 체크 (Implementer M1 완료 후 runtime-qa)
+- [ ] R2: 세이브/로드 시 다부위 partial load 엣지에서 `Hook.AfterMapGenerated` 발화 타이밍
+- [ ] R4: 첫 방 진입 시 `IRunState.CurrentMapCoord` null window 가능성 — `AddVisitedMapCoord` 호출 순서 실측
+
 ### 동적 이벤트 시스템 구현
 - [ ] `src/Event/` 폴더 구조 생성
 - [ ] `EventData`, `EventDataRegistry` 구현
