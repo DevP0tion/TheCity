@@ -75,6 +75,15 @@
         <CardOverrideFile Include="assets/overrides/cards/*.json" />
     </ItemGroup>
 
+    <!-- Generated/CardSinMap.g.cs 를 @(Compile)에 **평가 시점**에 명시적으로 등록.
+         기본 `**/*.cs` glob 은 MSBuild 평가 시 파일이 없으면 놓치므로, 클린 빌드에서
+         BeforeCompile 단계가 파일을 만들어도 @(Compile)에 들어가지 못해 CS0103 발생.
+         Remove 후 Include로 중복 없이 1회 등록. -->
+    <ItemGroup>
+        <Compile Remove="Generated/CardSinMap.g.cs" />
+        <Compile Include="Generated/CardSinMap.g.cs" />
+    </ItemGroup>
+
     <Target Name="BuildCardSinMapTool"
             Inputs="tools/CardSinMapGen/Program.cs;tools/CardSinMapGen/CardSinMapGen.csproj"
             Outputs="tools/CardSinMapGen/bin/Release/net9.0/CardSinMapGen.dll">
