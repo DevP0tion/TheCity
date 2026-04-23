@@ -253,7 +253,7 @@ assets/
 > ├── images/monsters/, images/map/, audio/, localization/ — 원안과 동일
 > ```
 >
-> **클래스명 접두사 (ID 충돌 회피):** `ModelId.Entry` 에는 모드 접두사 **자동 주입 없음**. BaseLib `CustomEncounterModel` 존재 여부는 M1-1 에서 실측. 충돌 회피는 **클래스명 자체로** 해결 권장 (예: `TheCityEbonyQueenAppleEncounter` → `the_city_ebony_queen_apple_encounter`).
+> **클래스명 접두사 (ID 충돌 회피):** `ModelId.Entry` 에는 모드 접두사 **자동 주입 없음**. BaseLib `CustomEncounterModel` 존재 여부는 M1-1 에서 실행 검증. 충돌 회피는 **클래스명 자체로** 해결 권장 (예: `TheCityEbonyQueenAppleEncounter` → `the_city_ebony_queen_apple_encounter`).
 
 ## 4. 부모 클래스 설계
 
@@ -519,7 +519,7 @@ public sealed class EbonyQueenAppleEncounter : AbnormalityEncounter
 > - **`Slots` 문자열 규약**: `"center"/"left"/"right"/"ground"` 허용 (임의 문자열). 단 scene 파일 (`res://scenes/encounters/ebony_queen_apple_encounter.tscn`) 이 있을 때만 배치 순서 반영. scene 없으면 기본 레이아웃 — PoC 는 scene 없이도 동작.
 > - **다부위 MinionPower 적용**: `EbonyQueenApple_LeftArm` / `_RightArm` / `_Root` 는 각자의 `AfterAddedToRoom()` 에서 **MinionPower 적용 필수** (본체 `_Head` 는 불필요). 위 §4.3 재설계 블록의 `IsSecondaryPart => true` 오버라이드 패턴 사용.
 > - **승패 플래그**: `EbonyQueenAppleEncounter` 에 `IsVictory`/`IsDefeated` 같은 커스텀 플래그 추가 + `SaveCustomState/LoadCustomState` 왕복 필수 (plan §4.1 ⚠ 블록 참조).
-> - **보상 `Array.Empty<Reward>()`**: 전투 기본 보상 UI 가 표시될지 여부는 M1-6 에서 실측.
+> - **보상 `Array.Empty<Reward>()`**: 전투 기본 보상 UI 가 표시될지 여부는 M1-6 에서 실행 검증.
 
 ## 6. 맵 노드 라우팅
 
@@ -561,7 +561,7 @@ static EventModel OnModifyNextEvent(IRunState runState, EventModel currentEvent)
 
 **잔여 리스크 (QA 단계):**
 - **R2**: 세이브/로드 시 다부위 partial load 엣지에서 `Hook.AfterMapGenerated` 발화 타이밍 (lazy hydrate 로 안전망).
-- **R4**: 첫 방 진입 시 `CurrentMapCoord` null window 가능성 — `AddVisitedMapCoord` 호출 순서 실측.
+- **R4**: 첫 방 진입 시 `CurrentMapCoord` null window 가능성 — `AddVisitedMapCoord` 호출 순서 실행 검증.
 
 상세 리스크 분석은 `abnormality-battle.verification.md` §5.5 참조.
 
@@ -589,7 +589,7 @@ static EventModel OnModifyNextEvent(IRunState runState, EventModel currentEvent)
 - **맵 노드 ↔ 환상체 ID 저장 + 라우팅** — §6 에서 Option A + Hook 단일 경로로 확정
 - FMOD 이벤트 경로 형식 — verification.md §9 에서 v1 은 `CustomBgm => ""` 로 우회, v2 에서 Godot 네이티브 경로
 
-**M1 런타임 실측 항목은 `doc/todo.md` 의 "abnormality-battle — M1 런타임 실측 필요" 섹션 참조.**
+**M1 런타임 실행 검증 항목은 `doc/todo.md` 의 "abnormality-battle — M1 런타임 실행 검증 필요" 섹션 참조.**
 
 ### 8.2 v2 이후
 
@@ -611,7 +611,7 @@ static EventModel OnModifyNextEvent(IRunState runState, EventModel currentEvent)
 > - **배경 에셋 경로 규약 — 원안 오류 (위 §3 ⚠ 블록 참조):**
 >   - ~~`EncounterModel.Id.Entry` → `ebonyqueenappleencounter` (밑줄 없음)~~
 >   - **실제**: `StringHelper.Slugify` 는 **CamelCase → snake_case (밑줄 포함)** → `ebony_queen_apple_encounter`. 경로는 `res://scenes/backgrounds/{id_snake_case}/layers/` (`res://images/backgrounds/encounters/` 아님).
-> - **이벤트 ID 충돌 — 런타임 확인 필요 (M1-7):** 바닐라에 `ABNORMALITY_*` prefix 존재 여부 실측. BaseLib `CustomEncounterModel` 이 자동 prefix 를 붙이지 않으므로 **클래스명 자체** 로 충돌 회피 (예: `TheCityEbonyQueenAppleEncounter`).
+> - **이벤트 ID 충돌 — 런타임 확인 필요 (M1-7):** 바닐라에 `ABNORMALITY_*` prefix 존재 여부 실행 검증. BaseLib `CustomEncounterModel` 이 자동 prefix 를 붙이지 않으므로 **클래스명 자체** 로 충돌 회피 (예: `TheCityEbonyQueenAppleEncounter`).
 
 ## 9. 참조
 

@@ -320,7 +320,7 @@ Run 종료:
 | R10 | `NMapLegendItem` default throw로 범례 추가 실패 | M | M | Prefix를 try-catch로 감싸 `return false` 보장, fallback 라벨 강제 설정 |
 | R11 | `UnknownLegendItem` template 미발견 (게임 업데이트) | L | L | null 체크 + 로그 후 silent skip, 기존 범례는 영향 없음 |
 
-## 검증 매트릭스 (L0–L7)
+## 검증 표 (L0–L7)
 
 | Level | 목적 | 명령 | 통과 기준 |
 |-------|------|------|-----------|
@@ -330,7 +330,7 @@ Run 종료:
 | L3 | 아이콘 렌더 | `bridge_capture_screenshot` (맵 화면) | 노드 아이콘이 금색 별, 범례에 환상체 항목 표시 |
 | L4 | 방 진입 | `bridge_navigate_map → bridge_get_screen → bridge_get_exceptions` | Event 방 진입 성공, 예외 0 |
 | L5 | 호버 툴팁 | 호버 → `bridge_get_full_state` | 제목/설명이 Abnormality/환상체로 표시 (v1은 상단바만 불완전 가능) |
-| L6 | 세이브 라운드트립 | `bridge_save_snapshot` → 재시작 → `bridge_restore_snapshot` → `bridge_get_map_state` | Abnormality 노드 200 유지 |
+| L6 | 세이브 저장·복원 왕복 | `bridge_save_snapshot` → 재시작 → `bridge_restore_snapshot` → `bridge_get_map_state` | Abnormality 노드 200 유지 |
 | L7 | 코옵 (가능 시) | 양측 모드 설치 | 맵 상태 동일, 예외 없음 |
 | Reg | 바닐라 로드 거부 | 모드 제거 후 L6 스냅샷 로드 | 크래시 아닌 graceful 실패 (미달 시 제약으로 문서화) |
 

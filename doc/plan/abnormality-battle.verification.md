@@ -175,7 +175,7 @@ mod-code-analyst 의 설계 옵션 분석:
 **Option A 구현 세부:**
 1. `AbnormalityMapInjector.Inject(...)` 가 노드 교체 시점에 이미 결정론 해시 (`hash(seed, actIndex, col, row)`) 를 계산하고 있으므로, **같은 해시 공식** 으로 `registeredIds[hash % count]` 을 골라 `AbnormalityRegistry._nodeAssignments[(actIndex, coord)] = id` 저장.
 2. 이벤트 진입 시점 (`Hook.ModifyNextEvent` Postfix) 에 `runState.CurrentMapCoord`/`runState.CurrentActIndex` 로 lookup.
-3. 세이브/로드 라운드트립: Dictionary 자체는 저장 안 함. **lazy hydrate** — lookup miss 시 즉석 해시 계산 (같은 입력 → 같은 출력 보장).
+3. 세이브/로드 저장·복원 왕복: Dictionary 자체는 저장 안 함. **lazy hydrate** — lookup miss 시 즉석 해시 계산 (같은 입력 → 같은 출력 보장).
 4. **Hydrate 주 경로** (neat form): `Hook.AfterMapGenerated(IRunState, ActMap, int actIndex)` 구독 — 세이브 로드 / 신규 run 양쪽 모두 발화 확정 (RunManager.cs:571, 577). act 당 1회 호출.
 
 ### 5.4 게임 API 검증 결과 (2026-04-22 최종) — **Option A 완전 지원**
