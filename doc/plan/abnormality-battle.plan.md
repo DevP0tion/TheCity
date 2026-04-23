@@ -560,7 +560,7 @@ static EventModel OnModifyNextEvent(IRunState runState, EventModel currentEvent)
 **전제 검증:** `IRunState.CurrentMapCoord`/`CurrentActIndex`/`Map`/`CurrentRoom` 은 public 인터페이스에 존재 (IRunState.cs, verification.md §5.4 확인).
 
 **잔여 리스크 (QA 단계):**
-- **R2**: 세이브/로드 시 다부위 partial load 엣지에서 `Hook.AfterMapGenerated` 발화 타이밍 (lazy hydrate 로 안전망).
+- **R2**: 세이브/로드 시 다부위 partial load 엣지 케이스에서 `Hook.AfterMapGenerated` 발화 타이밍 (lazy hydrate 로 안전망).
 - **R4**: 첫 방 진입 시 `CurrentMapCoord` null window 가능성 — `AddVisitedMapCoord` 호출 순서 실행 검증.
 
 상세 리스크 분석은 `abnormality-battle.verification.md` §5.5 참조.

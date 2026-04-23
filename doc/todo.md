@@ -14,7 +14,7 @@ Q4 훅 존재·시그니처 검증 완료 (verification.md §5.5). M1 은 M1-1~M
 - [ ] M1-7: 이벤트 ID prefix 규약 (ABNORMALITY_* 충돌 테스트)
 
 ### abnormality-battle — 런타임 QA 체크 (Implementer M1 완료 후 runtime-qa)
-- [ ] R2: 세이브/로드 시 다부위 partial load 엣지에서 `Hook.AfterMapGenerated` 발화 타이밍
+- [ ] R2: 세이브/로드 시 다부위 partial load 엣지 케이스에서 `Hook.AfterMapGenerated` 발화 타이밍
 - [ ] R4: 첫 방 진입 시 `IRunState.CurrentMapCoord` null window 가능성 — `AddVisitedMapCoord` 호출 순서 실행 검증
 
 ### 동적 이벤트 시스템 구현
