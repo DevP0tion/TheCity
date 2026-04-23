@@ -59,7 +59,7 @@ Resource → UI  ✗ 절대 금지
 
 폴더 구조와 네임스페이스가 일치해야 한다.
 
-### ModInit 순서 (로드 베어링)
+### ModInit 순서 (순서 바뀌면 동작 안 함)
 ```csharp
 public static void ModInit() {
     ModConfigRegistry.Register(...);   // 1. 설정 등록 — PatchAll 전
@@ -89,7 +89,7 @@ public static void ModInit() {
 - `AccessTools.Method(typeof(X), "Y")` 결과 null 가능 — preflight에서 확인.
 - switch default가 `throw`면 Prefix `return false` 안전. `return null`이면 Postfix 써야 함.
 - 게임 업데이트로 이름 변경 리스크 있는 멤버는 preflight에서 `Enum.IsDefined` / `AccessTools`
-  null 체크로 healthy 플래그 관리.
+  null 체크로 정상 동작 여부 플래그(healthy flag)를 관리.
 
 ### UI 주입 패턴
 - `<NRoom>._Ready` Postfix로 UI 자식 주입.
@@ -104,7 +104,7 @@ public static void ModInit() {
 
 ### CardFields / 리소스 수명
 - `CardFields.ClearAll()`은 `CombatManager.EndCombatInternal` Postfix 등에서 호출. 누락
-  시 `Dictionary<CardModel, int>`에 stale 참조 남음.
+  시 `Dictionary<CardModel, int>`에 이미 해제된(stale) 참조가 남음.
 - `SharedResourceManager.Initialize`는 이미 등록된 키만 리셋 — 이후 Register는 무시됨.
 
 ## 조사 워크플로우

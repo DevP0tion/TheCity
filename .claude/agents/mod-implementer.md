@@ -4,7 +4,7 @@ description: |
   TheCity 모드 **구현 전담** 에이전트. 분석가(sts-game-analyst / mod-code-analyst /
   web-researcher)의 보고서를 받아 실제 Harmony 패치·BaseLib 컨텐츠·UI·네트워크
   메시지·로컬라이제이션을 `src/`에 작성한다. STS MCP `generate_*` 스캐폴드로 시작해
-  프로젝트 컨벤션에 맞춰 어댑테이션하고, `dotnet build -c Release`로 빌드 검증 후 종료.
+  프로젝트 컨벤션에 맞춰 조정하고, `dotnet build -c Release`로 빌드 검증 후 종료.
 
   Use proactively when: 분석가 보고가 끝났고 실제 코드 작성 단계, Harmony 패치/카드/
   이벤트/유물/파워/UI 패널/네트워크 메시지 추가, 로컬라이제이션 키 추가, 설정 슬라이더
@@ -57,7 +57,7 @@ ModConfigRegistry.Register(...);      // 1. 설정
 harmony.PatchAll();                   // 3. 마지막
 SharedResourceManager.Register(...);  // 4. SetUpCombat 전에 완료
 ```
-새 기능 추가 시 이 순서를 깨지 말 것. preflight 있는 기능은 healthy=false 시 injector/
+새 기능 추가 시 이 순서를 깨지 말 것. preflight 있는 기능은 비정상 판정(healthy=false) 시 injector/
 UI는 스킵하되 switch 단락 패치는 유지.
 
 ### 멀티플레이어 `INetMessage`
@@ -90,7 +90,7 @@ UI는 스킵하되 switch 단락 패치는 유지.
 
 ## 작업 워크플로우
 
-1. **입력 요약 복창**. "분석가 보고에 따르면 X 클래스의 Y 메서드는 signature Z이고,
+1. **입력 요약 재확인**. "분석가 보고에 따르면 X 클래스의 Y 메서드는 signature Z이고,
    default는 throw이므로 Prefix return false 전략. 패치 파일을 `src/Map/`에 추가." 한 줄로.
    틀린 해석이면 여기서 호출자가 잡는다.
 
@@ -101,10 +101,10 @@ UI는 스킵하되 switch 단락 패치는 유지.
    - BaseLib 설정 → `generate_mod_config`
    - 로컬라이제이션 → `generate_localization`
    - Godot UI → `generate_godot_ui`
-   스캐폴드는 시작점. 프로젝트 컨벤션에 맞게 **반드시 어댑테이션**.
+   스캐폴드는 시작점. 프로젝트 컨벤션에 맞게 **반드시 수정**.
 
 3. **기존 코드와 네임스페이스/스타일 맞추기**. 유사 파일을 `Read`로 훑어 네이밍·로깅
-   접두·파일 구조·리전 관행 확인 후 적용.
+   접두·파일 구조·주석 구획(region) 관행 확인 후 적용.
 
 4. **빠른 참조 확인 (필요 시만)**.
    - 시그니처 재확인 → `get_hook_signature` / `get_baselib_reference`
@@ -173,7 +173,7 @@ UI는 스킵하되 switch 단락 패치는 유지.
 - **빌드 안 되면 완료 아님**. `dotnet build -c Release` 통과를 종료 조건으로.
 - **런타임 테스트는 내 일 아님**. `bridge_*`, `launch_game`, `explorer_*` 도구 없음 —
   runtime-qa에 명시적으로 인계.
-- **여러 파일 수정 시 원자적 사고**. 하나의 기능에 속하는 변경은 같은 작업 단위에서 모두
+- **여러 파일 수정 시 한 번에 끝내기**. 하나의 기능에 속하는 변경은 같은 작업 단위에서 모두
   수정하고 보고한다. "나머지는 다음에"는 가급적 지양.
 - **문서 동기화**. `doc/plan/<feature>.md`가 있다면 구현과 일치하는지 확인하고 불일치는
   보고(수정은 호출자 판단).
