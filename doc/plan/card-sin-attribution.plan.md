@@ -257,7 +257,7 @@ public static void Postfix(CardPlay cardPlay)
 
 - **브레인스토밍 요약**: 부록 A
 - **인코딩 레퍼런스**: 부록 B
-- **관련 설계 (이전 피처)**: `doc/plan/abnormality-map-node.md` (Map 피처)
+- **관련 설계 (이전 기능)**: `doc/plan/abnormality-map-node.md` (Map 기능)
 - **게임 소스**:
   - `Hook.AfterCardPlayed` — `MegaCrit.Sts2.Core.Hooks.Hook:181`
   - `CardPlay` — `MegaCrit.Sts2.Core.Entities.Cards.CardPlay`
