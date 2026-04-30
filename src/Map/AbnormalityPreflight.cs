@@ -45,6 +45,7 @@ public static class AbnormalityPreflight
         CheckMethod(reasons, typeof(ImageHelper), "GetRoomIconPath");
         CheckMethod(reasons, typeof(ImageHelper), "GetRoomIconOutlinePath");
         CheckMethod(reasons, typeof(Hook), nameof(Hook.ModifyGeneratedMap));
+        CheckMethod(reasons, typeof(Hook), nameof(Hook.ModifyNextEvent));
 
         Healthy = reasons.Count == 0;
         FailureReasons = reasons.ToImmutableArray();
