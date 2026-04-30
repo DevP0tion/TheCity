@@ -90,8 +90,9 @@ public abstract class AbnormalityEvent : CustomEventModel
     /// <item><see cref="CombatRoom.CombatState"/> 의 적 전부 사망 → <see cref="OnVictory"/> 호출 후 victory LocString 으로 finish.</item>
     /// <item>그 외 (플레이어 사망 / 시간 초과 등) → <see cref="OnDefeat"/> 호출 후 defeat LocString 으로 finish.</item>
     /// </list>
-    /// 자식 클래스는 hook 만 override 하면 되고, finish LocString 키 명세 (<c>{AbnormalityId}.victory</c> /
-    /// <c>{AbnormalityId}.defeat</c>) 는 부모가 강제. plan §5.4.3 / §5.4.4 와 일치.
+    /// 자식 클래스는 hook 만 override 하면 되고, finish LocString 키 명세 (<c>{Id.Entry}.victory</c> /
+    /// <c>{Id.Entry}.defeat</c>) 는 부모가 강제 — <c>Id.Entry</c> 는 BaseLib auto-prefix 가 클래스명을
+    /// SCREAMING_SNAKE_CASE 변환한 값 (예: <c>EBONY_QUEEN_APPLE_EVENT</c>). plan §5.4.3 / §5.4.4 와 일치.
     /// </summary>
     public override async Task Resume(AbstractRoom exitedRoom)
     {

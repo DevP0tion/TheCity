@@ -14,5 +14,9 @@
 
   "LEGEND_ABNORMALITY.title": "환상체",
   "LEGEND_ABNORMALITY.hoverTip.title": "환상체",
-  "LEGEND_ABNORMALITY.hoverTip.description": "이 방에는 환상체가 도사리고 있습니다.\n\n환상체와 조우 시 특별한 이벤트가 발생하여 [gold]보상[/gold]을 얻거나 가혹한 시련을 마주할 수 있습니다."
+  "LEGEND_ABNORMALITY.hoverTip.description": "이 방에는 환상체가 도사리고 있습니다.\n\n환상체와 조우 시 특별한 이벤트가 발생하여 [gold]보상[/gold]을 얻거나 가혹한 시련을 마주할 수 있습니다.",
+
+  "EBONY_QUEEN_APPLE_EVENT.options.APPROACH": "다가간다.",
+  "EBONY_QUEEN_APPLE_EVENT.victory": "흑단여왕의 사과가 당신 앞에서 무너져 내린다. 짙은 향기가 천천히 가라앉는다.",
+  "EBONY_QUEEN_APPLE_EVENT.defeat": "사과의 향기에 의식이 흐려진다. 당신은 비틀거리며 자리를 떠난다."
 }

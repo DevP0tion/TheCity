@@ -14,5 +14,9 @@
 
   "LEGEND_ABNORMALITY.title": "Abnormality",
   "LEGEND_ABNORMALITY.hoverTip.title": "Abnormality",
-  "LEGEND_ABNORMALITY.hoverTip.description": "An Abnormality resides in these rooms.\n\nEncountering it triggers a special event that may grant a [gold]Reward[/gold] or pose a harsh trial."
+  "LEGEND_ABNORMALITY.hoverTip.description": "An Abnormality resides in these rooms.\n\nEncountering it triggers a special event that may grant a [gold]Reward[/gold] or pose a harsh trial.",
+
+  "EBONY_QUEEN_APPLE_EVENT.options.APPROACH": "Approach.",
+  "EBONY_QUEEN_APPLE_EVENT.victory": "The Ebony Queen's Apple crumbles before you. The dense scent slowly settles.",
+  "EBONY_QUEEN_APPLE_EVENT.defeat": "The apple's scent clouds your senses. You stagger away."
 }
