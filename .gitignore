@@ -39,3 +39,6 @@ build.bat
 .tmp/
 Generated/
 src/UI/CardSinIconPatch.cs.uid
+
+# 분석가 / 구현자가 게임·BaseLib API 확인용으로 ildasm 결과를 떠놓는 워크스페이스. 빌드와 무관.
+tools/_baselib_il/
